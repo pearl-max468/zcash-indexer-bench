@@ -80,6 +80,8 @@ def main() -> int:
     parser.add_argument("--cold", action="store_true", help="drop the OS page cache before starting")
     parser.add_argument("--no-exclusive", action="store_true", help="leave zebrad running during Ztreamer runs")
     parser.add_argument("--timeout-hours", type=float, default=16)
+    parser.add_argument("--stall-minutes", type=float, default=20,
+                        help="stop if no log line, height metric or index growth for this long")
     parser.add_argument("--settle-seconds", type=int, default=120, help="keep sampling after completion")
     parser.add_argument("--max-tip-age", type=int, default=1800, help="seconds; Zebra freshness precondition")
     args = parser.parse_args()
@@ -166,7 +168,8 @@ def main() -> int:
     sizes.writerow(["t", "elapsed_s", "index_bytes"])
 
     prefixes = ("zaino_", "ztreamer_", "state_finalized_block_height", "sync_", "process_")
-    last = {"metrics": 0.0, "probe": 0.0, "size": 0.0, "journal": 0.0}
+    last = {"metrics": 0.0, "probe": 0.0, "size": 0.0, "journal": 0.0, "progress": 0.0}
+    progress_fingerprint, progress_seen = None, started
     last_metrics: dict[str, float] = {}
     accumulator_seen_change = started
     accumulator_value = None
@@ -262,6 +265,18 @@ def main() -> int:
             if t > deadline:
                 status = "timeout"
                 break
+            # Stall: no new log line, no height metric change and no index growth for the window.
+            if completed_at is None and t - last["progress"] >= 60:
+                last["progress"] = t
+                heights = tuple(sorted((k, v) for k, v in last_metrics.items() if "height" in k))
+                fingerprint = (len(unit.journal(started).splitlines()), heights, common.tree_bytes(system.index_dir))
+                if fingerprint != progress_fingerprint:
+                    progress_fingerprint, progress_seen = fingerprint, t
+                elif t - progress_seen > args.stall_minutes * 60:
+                    status = "stalled"
+                    events["stalled"] = t
+                    print(f"{system.name}: no progress for {args.stall_minutes} min; stopping", file=sys.stderr)
+                    break
             time.sleep(max(0.0, 1.0 - (common.now() - t)))
     finally:
         final = common.read_cgroup(cg)

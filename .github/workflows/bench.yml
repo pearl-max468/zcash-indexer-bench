@@ -149,7 +149,9 @@ jobs:
       - name: Start frozen Zebra
         run: sudo -E ci/start-frozen-zebra.sh start
       - name: Index build (from empty, cold page cache)
-        run: sudo -E "$OPT/venv/bin/python" bench/run_index_build.py --system "$SYSTEM" --cold --out "$RUN/index"
+        run: |
+          sudo -E "$OPT/venv/bin/python" bench/run_index_build.py --system "$SYSTEM" --cold \
+            --timeout-hours 4.5 --stall-minutes 20 --out "$RUN/index"
       - name: Serving
         run: |
           sudo -E "$OPT/venv/bin/python" bench/run_serving.py --system "$SYSTEM" \
