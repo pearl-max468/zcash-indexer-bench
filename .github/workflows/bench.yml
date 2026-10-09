@@ -20,9 +20,13 @@ on:
         description: Smaller serving sample counts (smoke test)
         type: boolean
         default: false
+      binaries_from_run:
+        description: Reuse the binaries built by this earlier run ID (blank = build now)
+        default: ''
 
 permissions:
   contents: read
+  actions: read
 
 env:
   NETWORK: Testnet
@@ -32,6 +36,7 @@ env:
 jobs:
   build:
     name: build ${{ matrix.target }}
+    if: inputs.binaries_from_run == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 300
     strategy:
@@ -61,6 +66,7 @@ jobs:
 
   prepare:
     needs: build
+    if: always() && (needs.build.result == 'success' || needs.build.result == 'skipped')
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
@@ -71,6 +77,8 @@ jobs:
         with:
           name: bin-zebrad
           path: /tmp/zbench-dl
+          run-id: ${{ inputs.binaries_from_run || github.run_id }}
+          github-token: ${{ github.token }}
       - name: Runtime
         run: |
           sudo mkdir -p "$OPT" && sudo cp -r /tmp/zbench-dl/. "$OPT"/
@@ -102,6 +110,7 @@ jobs:
   bench:
     name: bench ${{ matrix.system }} r${{ matrix.repeat }}
     needs: [build, prepare]
+    if: always() && needs.prepare.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 355
     strategy:
@@ -121,6 +130,8 @@ jobs:
           pattern: bin-*
           merge-multiple: true
           path: /tmp/zbench-dl
+          run-id: ${{ inputs.binaries_from_run || github.run_id }}
+          github-token: ${{ github.token }}
       - uses: actions/download-artifact@v4
         with:
           name: prepare
