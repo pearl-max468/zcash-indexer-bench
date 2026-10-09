@@ -211,12 +211,9 @@ def wait_ready(system, upper: int, timeout: float) -> float:
             stub = lw.connect(f"http://{system.grpc}", ready_timeout=2)
             tip = stub.GetLatestBlock(pb.ChainSpec(), timeout=5).height
             stub.GetBlock(pb.BlockID(height=upper), timeout=30)
-            indexed = True
-            if system.family == "zaino":
-                m = common.scrape(system.metrics, ("zaino_sync_",))
-                finalized = m.get("zaino_sync_finalized_height") or 0
-                indexed = finalized >= (m.get("zaino_sync_target_height") or float("inf"))
-            if tip >= upper + 100 and indexed:
+            # The index was built by the index-build step; serving the tip and the upper block is enough.
+            # (A restarted Zaino with a complete index does not re-publish its sync-target metric.)
+            if tip >= upper + 100:
                 return time.time() - started
         except Exception:
             pass
