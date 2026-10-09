@@ -1,0 +1,19 @@
+# Embedded Zakura node for ztreamerd, following Ztreamer's own benchmark configuration
+# (archive storage, cookie-authenticated JSON-RPC, zcashd compatibility off).
+# Rendered by bench/common.py; @-delimited placeholders come from versions.env.
+
+[network]
+network = "Mainnet"
+listen_addr = "0.0.0.0:8243"
+
+[state]
+cache_dir = "@ZAKURA_STATE@"
+storage_mode = "archive"
+
+[rpc]
+listen_addr = "127.0.0.1:8242"
+enable_cookie_auth = true
+cookie_dir = "@DATA@/zakura-cookie"
+
+[zcashd_compat]
+enabled = false

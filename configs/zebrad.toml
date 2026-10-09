@@ -1,0 +1,21 @@
+# Zebra mainnet node backing Zaino in `direct` mode: JSON-RPC plus the shared state DB on the same host.
+# Synced from genesis over the public P2P network; no third-party state snapshot is used.
+
+[network]
+network = "Mainnet"
+listen_addr = "0.0.0.0:8233"
+
+[state]
+cache_dir = "/data/zebra"
+
+[rpc]
+listen_addr = "127.0.0.1:8232"
+indexer_listen_addr = "127.0.0.1:8230"
+enable_cookie_auth = true
+cookie_dir = "/data/zebra-cookie"
+
+[metrics]
+endpoint_addr = "127.0.0.1:9101"
+
+[tracing]
+use_color = false
