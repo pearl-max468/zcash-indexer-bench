@@ -153,8 +153,11 @@ def main() -> int:
     probes_f = open(args.out / "probes.csv", "w", newline="")
     size_f = open(args.out / "index-size.csv", "w", newline="")
     samples = csv.writer(samples_f)
-    samples.writerow(["t", "elapsed_s", "who", "cpu_usec", "user_usec", "system_usec", "mem_bytes",
-                      "mem_peak_bytes", "rbytes", "wbytes", "pids", "host_mem_available_bytes"])
+    sample_keys = ("cpu_usec", "user_usec", "system_usec", "mem_bytes", "mem_peak_bytes", "anon_bytes",
+                   "file_bytes", "rbytes", "wbytes", "pids")
+    samples.writerow(["t", "elapsed_s", "who", *sample_keys, "host_mem_available_bytes"])
+    peak_anon = {"indexer": 0, "zebrad": 0}
+    proc_mem: dict[str, int] = {}
     metrics = csv.writer(metrics_f)
     metrics.writerow(["t", "elapsed_s", "metric", "value"])
     probes = csv.writer(probes_f)
@@ -187,12 +190,13 @@ def main() -> int:
                 break
             stats = common.read_cgroup(cg)
             avail = host_available()
-            samples.writerow([f"{t:.3f}", f"{elapsed:.3f}", "indexer", *[stats[k] for k in (
-                "cpu_usec", "user_usec", "system_usec", "mem_bytes", "mem_peak_bytes", "rbytes", "wbytes", "pids")], avail])
+            samples.writerow([f"{t:.3f}", f"{elapsed:.3f}", "indexer", *[stats[k] for k in sample_keys], avail])
+            peak_anon["indexer"] = max(peak_anon["indexer"], stats["anon_bytes"])
+            proc_mem = common.process_memory(unit.main_pid()) or proc_mem
             if zebra_cg:
                 z = common.read_cgroup(zebra_cg)
-                samples.writerow([f"{t:.3f}", f"{elapsed:.3f}", "zebrad", *[z[k] for k in (
-                    "cpu_usec", "user_usec", "system_usec", "mem_bytes", "mem_peak_bytes", "rbytes", "wbytes", "pids")], avail])
+                samples.writerow([f"{t:.3f}", f"{elapsed:.3f}", "zebrad", *[z[k] for k in sample_keys], avail])
+                peak_anon["zebrad"] = max(peak_anon["zebrad"], z["anon_bytes"])
 
             if t - last["metrics"] >= 2:
                 last["metrics"] = t
@@ -305,7 +309,9 @@ def main() -> int:
         "resources": {
             "indexer_process": {
                 "cpu_seconds": final["cpu_usec"] / 1e6,
-                "peak_memory_bytes": final["mem_peak_bytes"],
+                "peak_anon_memory_bytes": peak_anon["indexer"],
+                "peak_rss_bytes": proc_mem.get("VmHWM"),
+                "peak_cgroup_memory_bytes": final["mem_peak_bytes"],
                 "read_bytes": final["rbytes"],
                 "write_bytes": final["wbytes"],
                 "note": "Ztreamer's figure includes its embedded Zakura node" if system.family == "ztreamer" else
@@ -315,7 +321,8 @@ def main() -> int:
                 "cpu_seconds": (zebra_final["cpu_usec"] - zebra_base["cpu_usec"]) / 1e6,
                 "read_bytes": zebra_final["rbytes"] - zebra_base["rbytes"],
                 "write_bytes": zebra_final["wbytes"] - zebra_base["wbytes"],
-                "peak_memory_bytes_sampled": max_sampled(args.out / "samples.csv", "zebrad"),
+                "peak_anon_memory_bytes": peak_anon["zebrad"],
+                "peak_cgroup_memory_bytes_sampled": max_sampled(args.out / "samples.csv", "zebrad"),
             },
             "index_bytes_on_disk": index_bytes,
         },
@@ -328,6 +335,9 @@ def main() -> int:
                           if system.family == "zaino" else
                           "ztreamer: 'historical compact index complete' logged and gRPC answering"),
             "clock": "starts at systemd unit start; includes node startup (embedded for Ztreamer, already running for Zaino)",
+            "memory": ("peak_anon_memory_bytes: highest anonymous (heap) memory of the cgroup, sampled each second; "
+                       "peak_rss_bytes: VmHWM of the main process (includes mmap'd file pages such as LMDB); "
+                       "peak_cgroup_memory_bytes: memory.peak, which also counts evictable page cache"),
         },
     }
     (args.out / "run.json").write_text(json.dumps(summary, indent=2))

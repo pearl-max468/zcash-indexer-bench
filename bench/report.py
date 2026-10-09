@@ -89,9 +89,12 @@ def index_rows(runs):
             "target_height": (r.get("target") or {}).get("height"),
             "seconds_to_completion": r["headline"]["seconds_to_completion"],
             "seconds_to_first_grpc_answer": r["headline"]["seconds_to_first_grpc_answer"],
-            "indexer_cpu_seconds": res["cpu_seconds"], "indexer_peak_memory_gib": gib(res["peak_memory_bytes"]),
+            "indexer_cpu_seconds": res["cpu_seconds"],
+            "indexer_peak_memory_gib": gib(res.get("peak_anon_memory_bytes")),
+            "indexer_peak_rss_gib": gib(res.get("peak_rss_bytes")),
+            "indexer_peak_cgroup_gib": gib(res.get("peak_cgroup_memory_bytes", res.get("peak_memory_bytes"))),
             "indexer_written_gib": gib(res["write_bytes"]), "indexer_read_gib": gib(res["read_bytes"]),
-            "zebrad_cpu_seconds": z.get("cpu_seconds"), "zebrad_peak_memory_gib": gib(z.get("peak_memory_bytes_sampled")),
+            "zebrad_cpu_seconds": z.get("cpu_seconds"), "zebrad_peak_memory_gib": gib(z.get("peak_anon_memory_bytes")),
             "stack_cpu_seconds": stack_cpu, "index_size_gib": gib(r["resources"]["index_bytes_on_disk"]),
             "runner_cpu": cpu_model(d / "index" / "hardware-before.json"),
         })
@@ -270,22 +273,24 @@ def main() -> int:
     write_csv(args.out / "index-runs.csv", idx)
     if idx:
         values = ["seconds_to_completion", "seconds_to_first_grpc_answer", "indexer_cpu_seconds", "indexer_peak_memory_gib",
-                  "indexer_written_gib", "zebrad_cpu_seconds", "zebrad_peak_memory_gib", "stack_cpu_seconds", "index_size_gib"]
+                  "indexer_peak_rss_gib", "indexer_peak_cgroup_gib", "indexer_written_gib", "zebrad_cpu_seconds",
+                  "zebrad_peak_memory_gib", "stack_cpu_seconds", "index_size_gib"]
         agg = medians(idx, ["system"], values)
         write_csv(args.out / "index-summary.csv", agg)
         agg.sort(key=lambda r: ORDER.index(r["system"]) if r["system"] in ORDER else 99)
         md += ["## Initial index build (from empty, backing node at the frozen tip)", "",
-               md_table(["System", "Runs", "Time to complete", "First gRPC answer", "Indexer CPU-s", "Indexer peak RAM",
-                         "Zebra CPU-s (during)", "Zebra peak RAM", "Written by indexer", "Index on disk"],
+               md_table(["System", "Runs", "Time to complete", "First gRPC answer", "Indexer CPU-s", "Indexer peak heap",
+                         "Indexer peak RSS", "Zebra CPU-s (during)", "Zebra peak heap", "Written by indexer", "Index on disk"],
                         [[r["system"], r["runs"], fmt(r["seconds_to_completion"], " s", 0),
                           fmt(r["seconds_to_first_grpc_answer"], " s", 0), fmt(r["indexer_cpu_seconds"], "", 0),
-                          fmt(r["indexer_peak_memory_gib"], " GiB", 2), fmt(r["zebrad_cpu_seconds"], "", 0),
-                          fmt(r["zebrad_peak_memory_gib"], " GiB", 2), fmt(r["indexer_written_gib"], " GiB", 2),
-                          fmt(r["index_size_gib"], " GiB", 2)] for r in agg]),
-               "", "Medians across repeats; whiskers in figures show min–max. Ztreamer's indexer figures include its "
-                   "embedded Zakura node; Zaino's exclude Zebra, which is listed separately.", ""]
+                          fmt(r["indexer_peak_memory_gib"], " GiB", 2), fmt(r["indexer_peak_rss_gib"], " GiB", 2),
+                          fmt(r["zebrad_cpu_seconds"], "", 0), fmt(r["zebrad_peak_memory_gib"], " GiB", 2),
+                          fmt(r["indexer_written_gib"], " GiB", 2), fmt(r["index_size_gib"], " GiB", 2)] for r in agg]),
+               "", "Medians across repeats; whiskers in figures show min–max. Heap = peak anonymous memory of the "
+                   "process's cgroup; RSS = the main process's VmHWM, which also counts mmap'd index pages. "
+                   "Ztreamer's figures include its embedded Zakura node; Zaino's exclude Zebra, listed separately.", ""]
         bar_chart(figures / "index-time", "Time to a complete index (from empty)", agg, "seconds_to_completion", " s")
-        bar_chart(figures / "index-peak-memory", "Peak memory of the indexer process", agg, "indexer_peak_memory_gib", " GiB")
+        bar_chart(figures / "index-peak-memory", "Peak heap memory of the indexer process", agg, "indexer_peak_memory_gib", " GiB")
         bar_chart(figures / "index-cpu", "CPU time spent building the index", agg, "indexer_cpu_seconds", " s")
         bar_chart(figures / "index-size", "Index size on disk", agg, "index_size_gib", " GiB")
 

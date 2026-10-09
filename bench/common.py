@@ -147,9 +147,16 @@ def cgroup_path(unit: str) -> pathlib.Path:
 
 
 def read_cgroup(path: pathlib.Path) -> dict[str, int]:
-    """CPU microseconds, current/peak memory and block I/O bytes for a cgroup (0 when unavailable)."""
+    """CPU microseconds, memory and block I/O bytes for a cgroup (0 when unavailable).
+
+    Memory is split, because the cgroup total also counts page cache for files the process reads
+    (node state, mmap'd LMDB index), which the kernel can evict:
+      anon_bytes   heap and other anonymous memory: what the process itself holds
+      file_bytes   page cache charged to the cgroup
+      mem_bytes / mem_peak_bytes   cgroup totals (anon + file + kernel), as memory.current / memory.peak
+    """
     out = {"cpu_usec": 0, "user_usec": 0, "system_usec": 0, "mem_bytes": 0, "mem_peak_bytes": 0,
-           "rbytes": 0, "wbytes": 0, "pids": 0}
+           "anon_bytes": 0, "file_bytes": 0, "rbytes": 0, "wbytes": 0, "pids": 0}
     try:
         for line in (path / "cpu.stat").read_text().splitlines():
             key, value = line.split()
@@ -158,6 +165,10 @@ def read_cgroup(path: pathlib.Path) -> dict[str, int]:
         out["mem_bytes"] = int((path / "memory.current").read_text())
         peak = path / "memory.peak"
         out["mem_peak_bytes"] = int(peak.read_text()) if peak.exists() else 0
+        for line in (path / "memory.stat").read_text().splitlines():
+            key, value = line.split()
+            if key in ("anon", "file"):
+                out[f"{key}_bytes"] = int(value)
         for line in (path / "io.stat").read_text().splitlines():
             for field in line.split()[1:]:
                 key, _, value = field.partition("=")
@@ -165,6 +176,21 @@ def read_cgroup(path: pathlib.Path) -> dict[str, int]:
                     out[key] += int(value)
         out["pids"] = int((path / "pids.current").read_text())
     except (OSError, ValueError):
+        pass
+    return out
+
+
+def process_memory(pid: int | None) -> dict[str, int]:
+    """VmHWM (peak RSS), VmRSS and its anon/file split from /proc/<pid>/status, in bytes."""
+    out = {}
+    if not pid:
+        return out
+    try:
+        for line in pathlib.Path(f"/proc/{pid}/status").read_text().splitlines():
+            key, _, value = line.partition(":")
+            if key in ("VmHWM", "VmRSS", "RssAnon", "RssFile"):
+                out[key] = int(value.split()[0]) * 1024
+    except OSError:
         pass
     return out
 

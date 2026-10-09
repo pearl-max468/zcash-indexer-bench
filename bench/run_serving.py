@@ -125,6 +125,7 @@ class CgroupWatch:
     def __init__(self, paths: dict[str, pathlib.Path]):
         self.paths = paths
         self.peak = {k: 0 for k in paths}
+        self.peak_anon = {k: 0 for k in paths}
         self.start = {k: common.read_cgroup(p) for k, p in paths.items()}
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._run, daemon=True)
@@ -133,7 +134,9 @@ class CgroupWatch:
     def _run(self):
         while not self._stop.wait(0.5):
             for k, p in self.paths.items():
-                self.peak[k] = max(self.peak[k], common.read_cgroup(p)["mem_bytes"])
+                stats = common.read_cgroup(p)
+                self.peak[k] = max(self.peak[k], stats["mem_bytes"])
+                self.peak_anon[k] = max(self.peak_anon[k], stats["anon_bytes"])
 
     def finish(self) -> dict:
         self._stop.set()
@@ -142,7 +145,8 @@ class CgroupWatch:
         for k, p in self.paths.items():
             end = common.read_cgroup(p)
             result[k] = {"cpu_seconds": (end["cpu_usec"] - self.start[k]["cpu_usec"]) / 1e6,
-                         "peak_memory_bytes_sampled": max(self.peak[k], end["mem_bytes"]),
+                         "peak_anon_memory_bytes_sampled": max(self.peak_anon[k], end["anon_bytes"]),
+                         "peak_cgroup_memory_bytes_sampled": max(self.peak[k], end["mem_bytes"]),
                          "read_bytes": end["rbytes"] - self.start[k]["rbytes"],
                          "write_bytes": end["wbytes"] - self.start[k]["wbytes"]}
         return result

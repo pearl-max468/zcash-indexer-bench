@@ -20,6 +20,7 @@ import csv
 import dataclasses
 import datetime
 import json
+import os
 import pathlib
 import platform
 import sys
@@ -132,6 +133,9 @@ def range_oracle(zebra: JsonRpc, start: int, end: int):
     return oracle
 
 
+EMPTY_TREE = {"", "000000"}  # "000000" serializes an empty frontier; Zebra's RPC omits it instead
+
+
 def treestate_oracle(zebra: JsonRpc, height: int):
     expected = zebra.call("z_gettreestate", str(height))
 
@@ -140,16 +144,20 @@ def treestate_oracle(zebra: JsonRpc, height: int):
 
     def oracle(messages):
         t = messages[0]
-        problems = []
+        problems, notes = [], []
         if t.height != height:
             problems.append(f"height {t.height}")
         if t.hash != expected["hash"]:
             problems.append("hash differs")
-        if t.saplingTree != final_state("sapling"):
-            problems.append("saplingTree differs")
-        if t.orchardTree != final_state("orchard"):
-            problems.append("orchardTree differs")
-        return (not problems), "; ".join(problems) or "matches z_gettreestate"
+        for pool, got in (("sapling", t.saplingTree), ("orchard", t.orchardTree)):
+            want = final_state(pool)
+            if got == want:
+                continue
+            if got in EMPTY_TREE and want in EMPTY_TREE:
+                notes.append(f"{pool} empty tree encoded {got!r} (zebra: {want!r})")
+            else:
+                problems.append(f"{pool}Tree differs")
+        return (not problems), "; ".join(problems + notes) or "matches z_gettreestate"
 
     return oracle
 
@@ -201,12 +209,18 @@ def address_txids_oracle(zebra: JsonRpc, address: str, start: int, end: int):
     return oracle
 
 
+FROZEN = os.environ.get("ZBENCH_FROZEN") == "1"
+TIP_NOTE = "" if FROZEN else " (tip-dependent)"
+# On a frozen chain the tip and the (empty) mempool are fixed, so those answers are comparable too.
+TIP_MODE = "equal" if FROZEN else "report"
+
+
 def balance_oracle(zebra: JsonRpc, addresses: list[str]):
+    """Expected: the balance of the distinct addresses, as Zebra's getaddressbalance reports it."""
     def oracle(messages):
-        expected = zebra.call("getaddressbalance", {"addresses": addresses})["balance"]
+        expected = zebra.call("getaddressbalance", {"addresses": sorted(set(addresses))})["balance"]
         got = messages[0].valueZat
-        # Balance is tip-dependent: a block arriving between the two calls can change it.
-        return got == expected, f"valueZat {got} vs zebra {expected} (tip-dependent)"
+        return got == expected, f"valueZat {got} vs zebra {expected}{TIP_NOTE}"
 
     return oracle
 
@@ -218,7 +232,7 @@ def utxos_oracle(zebra: JsonRpc, addresses: list[str], start: int, stream: bool)
         want = {(u["txid"], u["outputIndex"], u["satoshis"]) for u in expected}
         have = {(lw.display_hex(r.txid), r.index, r.valueZat) for r in replies}
         if want == have:
-            return True, f"{len(have)} utxos match getaddressutxos (tip-dependent)"
+            return True, f"{len(have)} utxos match getaddressutxos{TIP_NOTE}"
         return False, f"{len(have)} utxos vs zebra {len(want)}; {len(want - have)} missing, {len(have - want)} extra"
 
     return oracle
@@ -236,8 +250,8 @@ def build_cases(zebra: JsonRpc, upper: int, sapling: int, upgrades: dict[str, in
     cases: list[Case] = []
 
     cases.append(Case("GetLightdInfo", "info", "unary", lambda: pb.Empty(), mode="report"))
-    cases.append(Case("GetLatestBlock", "tip", "unary", lambda: pb.ChainSpec(), mode="report"))
-    cases.append(Case("GetLatestTreeState", "tip", "unary", lambda: pb.Empty(), mode="report"))
+    cases.append(Case("GetLatestBlock", "tip", "unary", lambda: pb.ChainSpec(), mode=TIP_MODE))
+    cases.append(Case("GetLatestTreeState", "tip", "unary", lambda: pb.Empty(), mode=TIP_MODE))
     cases.append(Case("Ping", "zero", "unary", lambda: pb.Duration(intervalUs=0), mode="report"))
 
     for h in heights:
@@ -320,7 +334,7 @@ def build_cases(zebra: JsonRpc, upper: int, sapling: int, upgrades: dict[str, in
     cases.append(Case("GetTaddressBalance", "invalid address", "unary",
                       lambda: pb.AddressList(addresses=["t1notavalidaddress"])))
 
-    cases.append(Case("GetMempoolTx", "no exclusions", "server_stream", lambda: pb.GetMempoolTxRequest(), mode="report"))
+    cases.append(Case("GetMempoolTx", "no exclusions", "server_stream", lambda: pb.GetMempoolTxRequest(), mode=TIP_MODE))
     cases.append(Case("GetMempoolStream", "5s window", "server_stream", lambda: pb.Empty(), mode="report", timeout=5))
 
     for pool, proto_pool in (("sapling", pb.sapling), ("orchard", pb.orchard)):
