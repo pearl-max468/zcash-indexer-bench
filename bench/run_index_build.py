@@ -265,11 +265,19 @@ def main() -> int:
             if t > deadline:
                 status = "timeout"
                 break
-            # Stall: no new log line, no height metric change and no index growth for the window.
+            # Progress line once a minute (visible live in the CI log), and stall detection: no new log
+            # line, no height metric change and no index growth for the window.
             if completed_at is None and t - last["progress"] >= 60:
                 last["progress"] = t
                 heights = tuple(sorted((k, v) for k, v in last_metrics.items() if "height" in k))
-                fingerprint = (len(unit.journal(started).splitlines()), heights, common.tree_bytes(system.index_dir))
+                journal_lines = unit.journal(started).splitlines()
+                index_bytes_now = common.tree_bytes(system.index_dir)
+                last_line = journal_lines[-1].split(" ", 3)[-1][:160] if journal_lines else ""
+                print(f"[{elapsed:6.0f}s] {system.name}: index {index_bytes_now / 2**20:,.0f} MiB, "
+                      f"heap {stats['anon_bytes'] / 2**30:.2f} GiB, "
+                      f"{' '.join(f'{k}={v:.0f}' for k, v in heights) or 'no height metrics yet'} | {last_line}",
+                      file=sys.stderr, flush=True)
+                fingerprint = (len(journal_lines), heights, index_bytes_now)
                 if fingerprint != progress_fingerprint:
                     progress_fingerprint, progress_seen = fingerprint, t
                 elif t - progress_seen > args.stall_minutes * 60:
