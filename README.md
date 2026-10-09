@@ -4,8 +4,33 @@ An independent, reproducible compatibility and performance comparison of two Zca
 **Zaino** (Zingo Labs, part of the Z3 stack) and **Ztreamer** (Rust indexer with an embedded Zakura node).
 Funded by a ZecHub bounty. Not affiliated with either project.
 
-> **Status:** harness complete; measurement campaign in progress. Results, raw data and the
+> **Status:** measurement campaign in progress on GitHub Actions. Results, raw data and the
 > written comparison will be added under `results/` and `report/`.
+
+## Where it runs, and on what data
+
+The published measurements run on **free GitHub-hosted runners** (4 vCPU, 16 GB RAM), so anyone
+can reproduce them by forking this repository and running the `bench` workflow; no hardware or
+accounts beyond GitHub are needed.
+
+Runner disks cannot hold mainnet (about 255 GiB of node state per node), so the campaign uses
+**Zcash testnet frozen at height 4,383,897**: every node starts from the same
+[Zcash Foundation snapshot](https://snapshots.zfnd.org/) (pinned by SHA-256 in
+[`versions.env`](versions.env)) and stays at that height. Zebra has no outbound peers; Ztreamer's
+embedded Zakura node peers only with that Zebra, so it sees itself at the tip. Testnet is a complete
+chain with every pool (Sprout, Sapling, Orchard), and the snapshot predates testnet's NU7 activation,
+so all builds follow the same consensus rules. Neither project produced the data.
+
+What this does and does not show:
+- Compatibility results (protocol coverage, byte-level agreement, correctness against Zebra) carry
+  over to mainnet: the code paths are the same.
+- Performance results are **relative** comparisons on identical inputs. Testnet blocks are smaller
+  than mainnet's (no sandblasting-era blocks), so absolute times, index sizes and memory are not
+  mainnet figures.
+- Shared CI machines are noisier than dedicated hardware: each system runs on several runners and
+  the spread is reported, along with each runner's CPU model.
+
+The same scripts run the full mainnet campaign on dedicated hardware (see "Reproduce on mainnet").
 
 ## Systems under test
 
@@ -58,10 +83,28 @@ would deploy today.
    page-cache state, chain growth between runs) is stated next to the numbers it affects.
 7. Raw samples are published, not only summaries, so every figure can be recomputed.
 
-## Reproduce
+## Reproduce on GitHub Actions (testnet)
+
+1. Fork this repository (public forks get the free 4-vCPU runners).
+2. Actions → **bench** → *Run workflow*. Inputs choose the systems, the number of repeats
+   (e.g. `[1,2,3]`, one runner per system per repeat) and the serving suites.
+3. Each job uploads its raw outputs as an artifact `run-<system>-r<n>`. Download them into `runs/`
+   and build the tables and figures:
+
+```sh
+python bench/compare_compat.py --runs runs --out results/compat
+python bench/report.py --runs runs --out results
+```
+
+The workflow: `build` compiles every pinned binary; `prepare` starts the frozen Zebra, then derives
+fixtures and a fixed upper height (tip - 100); `bench` runs one system per job: index build from
+empty (cold page cache), serving suites, and both compatibility suites with Zebra as the reference.
+
+## Reproduce on mainnet
 
 Requirements: Linux (tested on Ubuntu 24.04), at least 16 threads, 64 GB RAM, ~2 TB NVMe as one
-volume, unmetered network. Run as root on a dedicated host.
+volume, unmetered network. Run as root on a dedicated host. The Zcash Foundation's mainnet snapshot
+(254 GiB, format 28.0.0) can replace the from-genesis sync in `10-zebra.sh`.
 
 ```sh
 git clone <this repo> /opt/zbench/repo && cd /opt/zbench/repo
@@ -91,7 +134,9 @@ $PY bench/compat_grpc.py --server zaino=http://127.0.0.1:8137 --server ztreamer=
 
 ```
 versions.env        every pinned version, commit, snapshot hash and port
-server/             host setup: bootstrap, Zebra, snapshots, builds, status
+.github/workflows/  the bench workflow (build, prepare, bench)
+ci/                 runner setup: disk cleanup, snapshot download and verification, frozen Zebra
+server/             host setup for mainnet: bootstrap, Zebra, snapshots, builds, status
 configs/            Zebra config and the Zaino / Zakura config templates
 proto/              lightwallet-protocol v0.5.0 (MIT, Electric Coin Company), as both projects vendor it
 bench/              compatibility suites, index-build and serving runners, fixtures
