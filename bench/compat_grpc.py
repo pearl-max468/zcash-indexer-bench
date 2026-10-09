@@ -469,7 +469,7 @@ def write_summary(out: pathlib.Path, names: list[str], rows: list[dict], info: d
             statuses = ", ".join(f"{n}: {r[f'{n}_status']}" for n in names)
             lines.append(f"- **{r['method']}** `{r['case']}` — {r['agreement']} ({statuses}) {r.get('diff', '')}")
     lines += ["", "## Server identity (GetLightdInfo)", "", "```json", json.dumps(info, indent=2), "```", ""]
-    (out / "summary.md").write_text("\n".join(lines))
+    (out / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 if __name__ == "__main__":

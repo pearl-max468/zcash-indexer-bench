@@ -139,7 +139,7 @@ def main() -> int:
             match = r[f"{n}_matches_{ref_name}"]
             cells.append(r[f"{n}_status"] + (f" ({'= ' + ref_name if match == 'yes' else '≠ ' + ref_name})" if match else ""))
         lines.append(f"| {r['method']} | {r['case']} | " + " | ".join(cells + [r[f'{ref_name}_status']]) + " |")
-    (args.out / "summary.md").write_text("\n".join(lines) + "\n")
+    (args.out / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"wrote {args.out}", file=sys.stderr)
     return 0
 
