@@ -56,6 +56,8 @@ class System:
     zakura_state: str | None = None  # Ztreamer only: cache_dir of the embedded node
 
     def command(self, config_path: str) -> list[str]:
+        # Absolute: systemd starts units in /, not in the caller's directory.
+        config_path = str(pathlib.Path(config_path).resolve())
         if self.family == "zaino":
             return [self.binary, "start", "--config", config_path]
         return [

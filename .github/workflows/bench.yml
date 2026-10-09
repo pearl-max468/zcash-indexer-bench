@@ -76,7 +76,9 @@ jobs:
           sudo mkdir -p "$OPT" && sudo cp -r /tmp/zbench-dl/. "$OPT"/
           ci/setup-runtime.sh
       - name: Frozen Zebra from the Zcash Foundation snapshot
-        run: sudo -E ci/start-frozen-zebra.sh
+        run: |
+          sudo -E ci/start-frozen-zebra.sh unpack
+          sudo -E ci/start-frozen-zebra.sh start
       - name: Fixtures and fixed upper height
         run: |
           tip=$(sudo -E bash -c 'source server/lib.sh; zebra_rpc getblockcount' | jq .result)
@@ -128,11 +130,13 @@ jobs:
           sudo mkdir -p "$OPT" && sudo cp -r /tmp/zbench-dl/. "$OPT"/
           ci/setup-runtime.sh
           mkdir -p "$RUN" && cp prepare/*.json "$RUN"/
-      - name: Frozen Zebra from the Zcash Foundation snapshot
-        run: sudo -E ci/start-frozen-zebra.sh
-      - name: Embedded Zakura state (Ztreamer)
+      - name: Unpack the Zcash Foundation snapshot
+        run: sudo -E ci/start-frozen-zebra.sh unpack
+      - name: Embedded Zakura state (Ztreamer), copied before Zebra opens the snapshot
         if: startsWith(matrix.system, 'ztreamer')
         run: sudo -E ci/zakura-state.sh "$SYSTEM"
+      - name: Start frozen Zebra
+        run: sudo -E ci/start-frozen-zebra.sh start
       - name: Index build (from empty, cold page cache)
         run: sudo -E "$OPT/venv/bin/python" bench/run_index_build.py --system "$SYSTEM" --cold --out "$RUN/index"
       - name: Serving
