@@ -4,7 +4,7 @@
 
 backend = "direct"
 zebra_db_path = "@DATA@/zebra"
-network = "Mainnet"
+network = "@NETWORK@"
 ephemeral_finalised_state = false
 metrics_endpoint = "@ZAINO_METRICS@"
 

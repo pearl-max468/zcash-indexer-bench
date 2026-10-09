@@ -52,11 +52,14 @@ def main() -> int:
     parser.add_argument("--zebra-rpc", required=True)
     parser.add_argument("--zebra-cookie")
     parser.add_argument("--upper", type=int, required=True)
-    parser.add_argument("--lower", type=int, default=419_200)
+    parser.add_argument("--network", choices=("Mainnet", "Testnet"), default="Mainnet")
+    parser.add_argument("--lower", type=int, help="default: Sapling activation for --network")
     parser.add_argument("--seed", type=int, default=20261009)
     parser.add_argument("--max-blocks", type=int, default=600)
     parser.add_argument("--out", type=pathlib.Path, required=True)
     args = parser.parse_args()
+    args.lower = args.lower or {"Mainnet": 419_200, "Testnet": 280_000}[args.network]
+    published = ZTREAMER_PUBLISHED if args.network == "Mainnet" else {"addresses": {}, "txids": []}
 
     zebra = JsonRpc(args.zebra_rpc, cookie=args.zebra_cookie)
     rng = lw.SplitMix64(args.seed)
@@ -76,7 +79,7 @@ def main() -> int:
                 if address.startswith("t") and address not in candidates:
                     candidates.append(address)
 
-    addresses = dict(ZTREAMER_PUBLISHED["addresses"])
+    addresses = dict(published["addresses"])
     histories = {}
     for address in candidates:
         if all(label in addresses for label, _, _ in ADDRESS_BUCKETS):
@@ -92,12 +95,12 @@ def main() -> int:
 
     fixtures = {
         "addresses": addresses,
-        "txids": ZTREAMER_PUBLISHED["txids"] + [by_kind[k]["txid"] for k in KINDS if k in by_kind],
+        "txids": published["txids"] + [by_kind[k]["txid"] for k in KINDS if k in by_kind],
         "transactions": [by_kind[k] for k in KINDS if k in by_kind],
         "address_history_lengths": {a: histories.get(a) for a in addresses.values()},
-        "selection": {"seed": args.seed, "lower": args.lower, "upper": args.upper, "blocks_visited": visited,
-                      "missing_kinds": [k for k in KINDS if k not in by_kind],
-                      "ztreamer_published": ZTREAMER_PUBLISHED},
+        "selection": {"seed": args.seed, "network": args.network, "lower": args.lower, "upper": args.upper,
+                      "blocks_visited": visited, "missing_kinds": [k for k in KINDS if k not in by_kind],
+                      "ztreamer_published": published},
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(fixtures, indent=2) + "\n")

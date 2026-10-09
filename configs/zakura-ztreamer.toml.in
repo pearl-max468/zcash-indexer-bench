@@ -1,10 +1,12 @@
 # Embedded Zakura node for ztreamerd, following Ztreamer's own benchmark configuration
 # (archive storage, cookie-authenticated JSON-RPC, zcashd compatibility off).
-# Rendered by bench/common.py; @-delimited placeholders come from versions.env.
+# In frozen mode its only peer is the local frozen Zebra, so it sees itself at the tip and no new
+# blocks arrive. Rendered by bench/common.py; @-delimited placeholders come from versions.env.
 
 [network]
-network = "Mainnet"
+network = "@NETWORK@"
 listen_addr = "0.0.0.0:8243"
+@ZAKURA_PEERS@
 
 [state]
 cache_dir = "@ZAKURA_STATE@"

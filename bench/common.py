@@ -16,16 +16,31 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
 def load_versions() -> dict[str, str]:
+    """Parse versions.env; `${NAME:-default}` values resolve from the environment like the shell does."""
     values = {}
     for line in (ROOT / "versions.env").read_text().splitlines():
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
             key, _, value = line.partition("=")
-            values[key] = value
+            default = re.fullmatch(r"\$\{(\w+):-(.*)\}", value)
+            values[key] = os.environ.get(default.group(1), default.group(2)) if default else value
     return values
 
 
 V = load_versions()
+
+# Frozen mode: every node stays at a fixed snapshot height (CI on testnet). Set by ZBENCH_FROZEN=1.
+FROZEN = os.environ.get("ZBENCH_FROZEN") == "1"
+SAPLING_ACTIVATION = {"Mainnet": 419_200, "Testnet": 280_000}[V["NETWORK"]]
+
+
+def render(template: str, out: pathlib.Path, **extra: str) -> pathlib.Path:
+    """Fill @NAME@ placeholders in configs/<template> from versions.env plus `extra`."""
+    peers_key = "initial_mainnet_peers" if V["NETWORK"] == "Mainnet" else "initial_testnet_peers"
+    values = dict(V, ZAKURA_PEERS=f'{peers_key} = ["127.0.0.1:8233"]\ncache_dir = false' if FROZEN else "", **extra)
+    text = re.sub(r"@([A-Z0-9_]+)@", lambda m: values[m.group(1)], (ROOT / "configs" / template).read_text())
+    out.write_text(text)
+    return out
 
 
 @dataclasses.dataclass
@@ -52,13 +67,9 @@ class System:
         ]
 
     def render_config(self, out: pathlib.Path) -> pathlib.Path:
-        template = "zainod.toml.in" if self.family == "zaino" else "zakura-ztreamer.toml.in"
-        text = (ROOT / "configs" / template).read_text()
-        values = dict(V, INDEX_DIR=self.index_dir, ZAKURA_STATE=self.zakura_state or "")
-        text = re.sub(r"@([A-Z0-9_]+)@", lambda m: values[m.group(1)], text)
-        path = out / ("zainod.toml" if self.family == "zaino" else "zakura.toml")
-        path.write_text(text)
-        return path
+        if self.family == "zaino":
+            return render("zainod.toml.in", out / "zainod.toml", INDEX_DIR=self.index_dir)
+        return render("zakura-ztreamer.toml.in", out / "zakura.toml", ZAKURA_STATE=self.zakura_state or "")
 
 
 def systems() -> dict[str, System]:

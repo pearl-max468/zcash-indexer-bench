@@ -106,9 +106,16 @@ def main() -> int:
         rpc = zebra_rpc()
         height, block_hash, block_time = zebra_tip(rpc)
         age = int(time.time()) - block_time
-        if age > args.max_tip_age:
+        if age > args.max_tip_age and not common.FROZEN:
             sys.exit(f"Zebra tip {height} is {age}s old; wait for it to catch up")
         target = {"height": height, "hash": block_hash, "block_time": block_time, "source": "zebra getblockcount"}
+    elif common.FROZEN:
+        # The embedded node opens a copy of the same frozen snapshot and peers only with the frozen Zebra.
+        if common.sh("systemctl", "is-active", "zebrad", check=False).strip() != "active":
+            sys.exit("frozen mode: zebrad.service must run as the embedded node's only peer")
+        height, block_hash, block_time = zebra_tip(zebra_rpc())
+        target = {"height": height, "hash": block_hash, "block_time": block_time,
+                  "source": "frozen snapshot tip (zebra getblockcount)"}
     else:
         marker = pathlib.Path(system.zakura_state) / ".zbench-caught-up"
         if not marker.exists() or time.time() - marker.stat().st_mtime > args.max_tip_age:
@@ -283,7 +290,9 @@ def main() -> int:
         "status": status,
         "started_utc": datetime.datetime.fromtimestamp(started, datetime.timezone.utc).isoformat(),
         "cache": "cold (page cache dropped)" if args.cold else "warm",
-        "exclusive": system.family == "ztreamer" and not args.no_exclusive,
+        "exclusive": system.family == "ztreamer" and not args.no_exclusive and not common.FROZEN,
+        "frozen": common.FROZEN,
+        "network": V["NETWORK"],
         "target": target,
         "tip_served_at_end": tip_served,
         "phases_seconds_from_start": {k: rel(k) for k in sorted(events)},

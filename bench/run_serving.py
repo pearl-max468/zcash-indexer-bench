@@ -224,7 +224,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--system", required=True, choices=sorted(common.systems()))
     parser.add_argument("--upper", type=int, required=True, help="fixed highest height for every workload")
-    parser.add_argument("--lower", type=int, default=419_200, help="Sapling activation on mainnet")
+    parser.add_argument("--lower", type=int, default=common.SAPLING_ACTIVATION, help="default: Sapling activation")
     parser.add_argument("--fixtures", type=pathlib.Path, required=True)
     parser.add_argument("--out", type=pathlib.Path, required=True)
     parser.add_argument("--repeat", type=int, default=1)
@@ -246,7 +246,7 @@ def main() -> int:
     server_cpus, client_cpus = f"0-{ncpu - reserve - 1}", f"{ncpu - reserve}-{ncpu - 1}"
     if system.family == "zaino" and common.sh("systemctl", "is-active", "zebrad", check=False).strip() != "active":
         sys.exit("zebrad.service is not running")
-    if system.family == "ztreamer":
+    if system.family == "ztreamer" and not common.FROZEN:
         subprocess.run(["systemctl", "stop", "zebrad"], check=False)
 
     config = system.render_config(args.out)
@@ -293,7 +293,7 @@ def main() -> int:
         unit.stop()
         if system.family == "zaino":
             subprocess.run(["systemctl", "set-property", "--runtime", "zebrad", "AllowedCPUs="], check=False)
-        else:
+        elif not common.FROZEN:
             subprocess.run(["systemctl", "start", "zebrad"], check=False)
         (args.out / "journal.log").write_text(unit.journal(unit_started))
         meta["finished_utc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()

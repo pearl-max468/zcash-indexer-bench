@@ -1,0 +1,26 @@
+# Zebra frozen at a Zcash Foundation snapshot: no outbound peers and no peer cache, so the chain
+# stays at the snapshot height for every run. It listens on loopback only, which lets the embedded
+# Zakura node of Ztreamer peer with it (see zakura-ztreamer.toml.in) and see that it is at the tip.
+# Rendered by bench/common.py; @-delimited placeholders come from versions.env.
+
+[network]
+network = "@NETWORK@"
+listen_addr = "127.0.0.1:8233"
+initial_mainnet_peers = []
+initial_testnet_peers = []
+cache_dir = false
+
+[state]
+cache_dir = "@DATA@/zebra"
+
+[rpc]
+listen_addr = "@ZEBRA_RPC@"
+indexer_listen_addr = "@ZEBRA_INDEXER_RPC@"
+enable_cookie_auth = true
+cookie_dir = "@DATA@/zebra-cookie"
+
+[metrics]
+endpoint_addr = "@ZEBRA_METRICS@"
+
+[tracing]
+use_color = false

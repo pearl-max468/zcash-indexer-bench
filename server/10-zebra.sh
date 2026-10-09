@@ -4,13 +4,8 @@
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 require_root
 
-src=$(checkout_pinned "zebra-$ZEBRA_REF" https://github.com/ZcashFoundation/zebra "$ZEBRA_COMMIT")
 bin="$OPT/bin/zebrad-$ZEBRA_REF"
-build=(cargo build --locked --release -p zebrad --bin zebrad --features "$ZEBRA_FEATURES")
-log "building zebrad $ZEBRA_REF: ${build[*]}"
-(cd "$src" && "${build[@]}")
-install -m755 "$src/target/release/zebrad" "$bin"
-record_build "zebrad-$ZEBRA_REF" "$src" "$bin" "${build[@]}"
+[[ -x $bin ]] || "$repo_root/server/12-build.sh" zebrad
 
 mkdir -p "$DATA/zebra" "$DATA/zebra-cookie" /etc/zbench
 install -m644 "$repo_root/configs/zebrad.toml" /etc/zbench/zebrad.toml

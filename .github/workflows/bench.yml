@@ -1,0 +1,159 @@
+name: bench
+
+# Reproducible Zaino vs Ztreamer comparison on GitHub-hosted runners (public repos run free).
+# Every node starts from the same pinned Zcash Foundation testnet snapshot and stays frozen at its
+# height, so all jobs see identical chain data. Fork this repository and run the workflow to reproduce.
+
+on:
+  workflow_dispatch:
+    inputs:
+      systems:
+        description: Systems to benchmark (JSON list)
+        default: '["zaino-0.10.1", "zaino-0.9.0", "ztreamer-v0.1.0", "ztreamer-master"]'
+      repeats:
+        description: Repeat labels (JSON list); each label is a separate runner per system
+        default: '[1]'
+      suites:
+        description: Serving suites
+        default: latency,ranges,scaling,sync
+      quick:
+        description: Smaller serving sample counts (smoke test)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  NETWORK: Testnet
+  ZBENCH_FROZEN: "1"
+  OPT: /opt/zbench
+
+jobs:
+  build:
+    name: build ${{ matrix.target }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [zebrad, zaino-stable, zaino-repro, ztreamer-release, ztreamer-head, ztreamer-client]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk
+        run: ci/free-disk.sh
+      - name: Build dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends protobuf-compiler libprotobuf-dev clang \
+            libclang-dev pkg-config libssl-dev cmake
+          sudo mkdir -p "$OPT" && sudo chown "$(id -u):$(id -g)" "$OPT"
+      - name: Build ${{ matrix.target }}
+        run: server/12-build.sh ${{ matrix.target }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bin-${{ matrix.target }}
+          path: |
+            /opt/zbench/bin/
+            /opt/zbench/provenance/
+          if-no-files-found: error
+          retention-days: 30
+
+  prepare:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk
+        run: ci/free-disk.sh
+      - uses: actions/download-artifact@v4
+        with:
+          name: bin-zebrad
+          path: /tmp/zbench-dl
+      - name: Runtime
+        run: |
+          sudo mkdir -p "$OPT" && sudo cp -r /tmp/zbench-dl/. "$OPT"/
+          ci/setup-runtime.sh
+      - name: Frozen Zebra from the Zcash Foundation snapshot
+        run: sudo -E ci/start-frozen-zebra.sh
+      - name: Fixtures and fixed upper height
+        run: |
+          tip=$(sudo -E bash -c 'source server/lib.sh; zebra_rpc getblockcount' | jq .result)
+          upper=$((tip - 100))
+          mkdir -p prepare
+          sudo -E "$OPT/venv/bin/python" bench/make_fixtures.py --network "$NETWORK" \
+            --zebra-rpc http://127.0.0.1:8232 --zebra-cookie "$DATA/zebra-cookie/.cookie" \
+            --upper "$upper" --out prepare/fixtures.json
+          sudo -E server/collect-hardware.sh > prepare/hardware.json
+          jq -n --argjson tip "$tip" --argjson upper "$upper" --arg snapshot "$(grep ZF_TESTNET_URL versions.env)" \
+            --arg state "$(sudo du -sb "$DATA/zebra" | cut -f1)" --arg df "$(df -B1 "$DATA" | tail -1)" \
+            '{tip: $tip, upper: $upper, snapshot: $snapshot, zebra_state_bytes: $state, data_volume_df: $df}' \
+            > prepare/prepare.json
+          cat prepare/prepare.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prepare
+          path: prepare/
+          retention-days: 30
+
+  bench:
+    name: bench ${{ matrix.system }} r${{ matrix.repeat }}
+    needs: [build, prepare]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix:
+        system: ${{ fromJSON(inputs.systems) }}
+        repeat: ${{ fromJSON(inputs.repeats) }}
+    env:
+      SYSTEM: ${{ matrix.system }}
+      RUN: runs/${{ matrix.system }}-r${{ matrix.repeat }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Free disk
+        run: ci/free-disk.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: bin-*
+          merge-multiple: true
+          path: /tmp/zbench-dl
+      - uses: actions/download-artifact@v4
+        with:
+          name: prepare
+          path: prepare
+      - name: Runtime
+        run: |
+          sudo mkdir -p "$OPT" && sudo cp -r /tmp/zbench-dl/. "$OPT"/
+          ci/setup-runtime.sh
+          mkdir -p "$RUN" && cp prepare/*.json "$RUN"/
+      - name: Frozen Zebra from the Zcash Foundation snapshot
+        run: sudo -E ci/start-frozen-zebra.sh
+      - name: Embedded Zakura state (Ztreamer)
+        if: startsWith(matrix.system, 'ztreamer')
+        run: sudo -E ci/zakura-state.sh "$SYSTEM"
+      - name: Index build (from empty, cold page cache)
+        run: sudo -E "$OPT/venv/bin/python" bench/run_index_build.py --system "$SYSTEM" --cold --out "$RUN/index"
+      - name: Serving
+        run: |
+          sudo -E "$OPT/venv/bin/python" bench/run_serving.py --system "$SYSTEM" \
+            --upper "$(jq .upper prepare/prepare.json)" --fixtures prepare/fixtures.json \
+            --repeat ${{ matrix.repeat }} --suites "${{ inputs.suites }}" ${{ inputs.quick && '--quick' || '' }} \
+            --out "$RUN/serving"
+      - name: Compatibility (gRPC and JSON-RPC, Zebra as reference)
+        if: matrix.repeat == fromJSON(inputs.repeats)[0]
+        run: sudo -E ci/compat.sh "$SYSTEM" "$(jq .upper prepare/prepare.json)" prepare/fixtures.json "$RUN/compat"
+      - name: Collect logs
+        if: always()
+        run: |
+          mkdir -p "$RUN"
+          sudo journalctl -u zebrad --no-pager > "$RUN/zebrad.log" 2>/dev/null || true
+          df -h > "$RUN/df.txt"
+          sudo chown -R "$(id -u):$(id -g)" runs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: run-${{ matrix.system }}-r${{ matrix.repeat }}
+          path: runs/
+          retention-days: 90
