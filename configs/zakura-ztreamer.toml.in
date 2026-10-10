@@ -1,12 +1,14 @@
 # Embedded Zakura node for ztreamerd, following Ztreamer's own benchmark configuration
 # (archive storage, cookie-authenticated JSON-RPC, zcashd compatibility off).
 # In frozen mode its only peer is the local frozen Zebra, so it sees itself at the tip and no new
-# blocks arrive. Rendered by bench/common.py; @-delimited placeholders come from versions.env.
+# blocks arrive. Zakura 1.5.1 (Ztreamer master) also starts its experimental iroh P2P v2 stack with
+# built-in bootstrap peers on testnet by default; frozen mode pins the legacy TCP stack instead. Rendered by bench/common.py; @-delimited placeholders come from versions.env.
 
 [network]
 network = "@NETWORK@"
 listen_addr = "0.0.0.0:8243"
 @ZAKURA_PEERS@
+@ZAKURA_P2P_STACK@
 
 [state]
 cache_dir = "@ZAKURA_STATE@"

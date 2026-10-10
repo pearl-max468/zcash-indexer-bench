@@ -309,6 +309,12 @@ def main() -> int:
         if stopped_zebra:
             subprocess.run(["systemctl", "start", "zebrad"], check=False)
 
+    # Frozen mode: every system must end on the snapshot tip. A node that reached other peers and
+    # synced past it indexed a different chain, so the run cannot be compared.
+    if common.FROZEN and status == "complete" and tip_served != (target or {}).get("height"):
+        status = "tip_mismatch"
+        print(f"{system.name}: served tip {tip_served} != frozen tip {target and target.get('height')}", file=sys.stderr)
+
     index_bytes = common.tree_bytes(system.index_dir)
     (args.out / "hardware-after.json").write_text(
         common.sh(str(common.ROOT / "server" / "collect-hardware.sh"), check=False))

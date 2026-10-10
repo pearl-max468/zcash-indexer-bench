@@ -18,7 +18,7 @@ scratch="$DATA/index/catchup-$ref"
 rm -rf "$scratch"
 mkdir -p "$scratch" "$DATA/zakura-cookie"
 config=$(mktemp --suffix=.toml)
-sed -e "s|@ZAKURA_STATE@|$state|g" -e "s|@DATA@|$DATA|g" -e "s|@NETWORK@|$NETWORK|g" -e "s|@ZAKURA_PEERS@||g" \
+sed -e "s|@ZAKURA_STATE@|$state|g" -e "s|@DATA@|$DATA|g" -e "s|@NETWORK@|$NETWORK|g" -e "s|@ZAKURA_PEERS@||g" -e "s|@ZAKURA_P2P_STACK@||g" \
     "$repo_root/configs/zakura-ztreamer.toml.in" > "$config"
 
 unit="zbench-catchup-$ref"

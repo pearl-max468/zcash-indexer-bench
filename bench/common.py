@@ -54,6 +54,7 @@ class System:
     grpc: str  # host:port
     metrics: str  # host:port
     zakura_state: str | None = None  # Ztreamer only: cache_dir of the embedded node
+    zakura_p2p_stack: bool = False  # embedded Zakura has `network.p2p_stack` (1.5.1+; the v0.1.0 fork rejects it)
 
     def command(self, config_path: str) -> list[str]:
         # Absolute: systemd starts units in /, not in the caller's directory.
@@ -71,7 +72,9 @@ class System:
     def render_config(self, out: pathlib.Path) -> pathlib.Path:
         if self.family == "zaino":
             return render("zainod.toml.in", out / "zainod.toml", INDEX_DIR=self.index_dir)
-        return render("zakura-ztreamer.toml.in", out / "zakura.toml", ZAKURA_STATE=self.zakura_state or "")
+        stack = 'p2p_stack = "legacy"' if FROZEN and self.zakura_p2p_stack else ""
+        return render("zakura-ztreamer.toml.in", out / "zakura.toml", ZAKURA_STATE=self.zakura_state or "",
+                      ZAKURA_P2P_STACK=stack)
 
 
 def systems() -> dict[str, System]:
@@ -79,15 +82,15 @@ def systems() -> dict[str, System]:
     zaino = lambda ref: System(
         name=f"zaino-{ref}", family="zaino", binary=f"{opt}/bin/zainod-{ref}",
         index_dir=f"{data}/index/zaino-{ref}", grpc=V["ZAINO_GRPC"], metrics=V["ZAINO_METRICS"])
-    ztreamer = lambda ref, snap: System(
+    ztreamer = lambda ref, snap, p2p_stack: System(
         name=f"ztreamer-{ref}", family="ztreamer", binary=f"{opt}/bin/ztreamerd-{ref}",
         index_dir=f"{data}/index/ztreamer-{ref}", grpc=V["ZTREAMER_GRPC"], metrics=V["ZTREAMER_METRICS"],
-        zakura_state=f"{data}/zakura-{snap}")
+        zakura_state=f"{data}/zakura-{snap}", zakura_p2p_stack=p2p_stack)
     return {s.name: s for s in (
         zaino(V["ZAINO_STABLE_REF"]),
         zaino(V["ZAINO_REPRO_REF"]),
-        ztreamer(V["ZTREAMER_RELEASE_REF"], "v28"),
-        ztreamer(V["ZTREAMER_HEAD_REF"], "v29"),
+        ztreamer(V["ZTREAMER_RELEASE_REF"], "v28", False),
+        ztreamer(V["ZTREAMER_HEAD_REF"], "v29", True),
     )}
 
 
