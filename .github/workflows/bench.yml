@@ -23,6 +23,10 @@ on:
       binaries_from_run:
         description: Reuse the binaries built by this earlier run ID (blank = build now)
         default: ''
+      tcp_nodelay:
+        description: "Diagnostic: serve with TCP_NODELAY forced on accepted sockets (LD_PRELOAD shim); runs are labelled -nodelay"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -120,7 +124,7 @@ jobs:
         repeat: ${{ fromJSON(inputs.repeats) }}
     env:
       SYSTEM: ${{ matrix.system }}
-      RUN: runs/${{ matrix.system }}-r${{ matrix.repeat }}
+      RUN: runs/${{ matrix.system }}-r${{ matrix.repeat }}${{ inputs.tcp_nodelay && '-nodelay' || '' }}
     steps:
       - uses: actions/checkout@v4
       - name: Free disk
@@ -154,12 +158,17 @@ jobs:
             --timeout-hours 4.5 --stall-minutes 20 --out "$RUN/index"
       - name: Serving
         run: |
-          sudo -E "$OPT/venv/bin/python" bench/run_serving.py --system "$SYSTEM" \
+          nodelay=()
+          if [[ ${{ inputs.tcp_nodelay }} == true ]]; then
+            cc -O2 -shared -fPIC -o "$OPT/nodelay.so" ci/nodelay.c -ldl
+            nodelay=(--tcp-nodelay "$OPT/nodelay.so")
+          fi
+          sudo -E "$OPT/venv/bin/python" bench/run_serving.py --system "$SYSTEM" "${nodelay[@]}" \
             --upper "$(jq .upper prepare/prepare.json)" --fixtures prepare/fixtures.json \
             --repeat ${{ matrix.repeat }} --suites "${{ inputs.suites }}" ${{ inputs.quick && '--quick' || '' }} \
             --out "$RUN/serving"
       - name: Compatibility (gRPC and JSON-RPC, Zebra as reference)
-        if: matrix.repeat == fromJSON(inputs.repeats)[0]
+        if: matrix.repeat == fromJSON(inputs.repeats)[0] && !inputs.tcp_nodelay
         run: sudo -E ci/compat.sh "$SYSTEM" "$(jq .upper prepare/prepare.json)" prepare/fixtures.json "$RUN/compat"
       - name: Collect logs
         if: always()
@@ -171,6 +180,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: run-${{ matrix.system }}-r${{ matrix.repeat }}
+          name: run-${{ matrix.system }}-r${{ matrix.repeat }}${{ inputs.tcp_nodelay && '-nodelay' || '' }}
           path: runs/
           retention-days: 90

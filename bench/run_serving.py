@@ -234,6 +234,8 @@ def main() -> int:
     parser.add_argument("--client-cpus", type=int, default=0, help="CPUs reserved for ghz (default: 1/4 of host)")
     parser.add_argument("--quick", action="store_true", help="smaller sample counts, for smoke tests")
     parser.add_argument("--ready-timeout", type=float, default=3600)
+    parser.add_argument("--tcp-nodelay", type=pathlib.Path, metavar="SHIM",
+                        help="diagnostic: LD_PRELOAD this build of ci/nodelay.c into the server")
     args = parser.parse_args()
 
     system = common.systems()[args.system]
@@ -251,7 +253,10 @@ def main() -> int:
         subprocess.run(["systemctl", "stop", "zebrad"], check=False)
 
     config = system.render_config(args.out)
-    unit = common.Unit(f"zbench-serve-{system.name}", system.command(str(config)), env={"RUST_LOG": "warn"},
+    env = {"RUST_LOG": "warn"}
+    if args.tcp_nodelay:
+        env["LD_PRELOAD"] = str(args.tcp_nodelay.resolve())
+    unit = common.Unit(f"zbench-serve-{system.name}", system.command(str(config)), env=env,
                        properties=[f"AllowedCPUs={server_cpus}"])
     if system.family == "zaino":
         subprocess.run(["systemctl", "set-property", "--runtime", "zebrad", f"AllowedCPUs={server_cpus}"], check=False)
@@ -263,7 +268,8 @@ def main() -> int:
             "provenance": common.provenance(system.name), "command": common.quote(unit.command),
             "ghz": common.sh(f"{V['OPT']}/bin/ghz", "--version", check=False).strip(),
             "started_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "cache": "warm: index built earlier, no cache drop; warmups excluded via --skipFirst"}
+            "cache": "warm: index built earlier, no cache drop; warmups excluded via --skipFirst",
+            "tcp_nodelay_shim": bool(args.tcp_nodelay)}
     (args.out / "hardware.json").write_text(common.sh(str(common.ROOT / "server" / "collect-hardware.sh"), check=False))
 
     unit_started = time.time()

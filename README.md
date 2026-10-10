@@ -14,7 +14,7 @@ can reproduce them by forking this repository and running the `bench` workflow; 
 accounts beyond GitHub are needed.
 
 Runner disks cannot hold mainnet (about 255 GiB of node state per node), so the campaign uses
-**Zcash testnet frozen at height 4,383,897**: every node starts from the same
+**Zcash testnet frozen at height 4,382,897**: every node starts from the same
 [Zcash Foundation snapshot](https://snapshots.zfnd.org/) (pinned by SHA-256 in
 [`versions.env`](versions.env)) and stays at that height. Zebra has no outbound peers; Ztreamer's
 embedded Zakura node peers only with that Zebra, so it sees itself at the tip. Testnet is a complete
