@@ -360,15 +360,15 @@ Reported for transparency; no data from a defective run is used.
 
 - **Zaino completion.** Zaino 0.10.1's height metrics reach the sync target before its txout-set
   accumulator is committed, and 0.9.0 exports no height metrics. The first campaign's Zaino jobs
-  (run 37871834309) waited on the metrics and timed out. Since `f6c2ad1`, a Zaino run is complete
+  (run 37871834309) waited on the metrics and timed out. Since `d5b2598`, a Zaino run is complete
   when Zaino logs "finalised state switched back to the persistent database", the same rule for
   both versions.
 - **Ztreamer master reaching outside peers.** Zakura 1.5.1 starts its experimental iroh P2P v2 stack
   with built-in bootstrap peers on testnet by default. In the first master runs the embedded node
-  synced past the frozen tip, so it indexed a different chain. Since `2f1306e`, frozen mode pins
+  synced past the frozen tip, so it indexed a different chain. Since `2eb5340`, frozen mode pins
   `network.p2p_stack = "legacy"` for master, and any run that does not end serving the frozen tip is
   rejected (`tip_mismatch`). Ztreamer v0.1.0's fork has no iroh stack, and its config is unchanged.
-- **Provenance.** Ztreamer v0.1.0's runs come from run 37871834309 (harness `0064fc5`). Later harness
+- **Provenance.** Ztreamer v0.1.0's runs come from run 37871834309 (harness `125b464`). Later harness
   changes touch only Zaino's completion rule, serving readiness for Zaino, and master's config. All
   three v0.1.0 runs ended serving the frozen tip. See [`runs/README.md`](../runs/README.md).
 
