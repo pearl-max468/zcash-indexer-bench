@@ -171,8 +171,6 @@ def main() -> int:
     last = {"metrics": 0.0, "probe": 0.0, "size": 0.0, "journal": 0.0, "progress": 0.0}
     progress_fingerprint, progress_seen = None, started
     last_metrics: dict[str, float] = {}
-    accumulator_seen_change = started
-    accumulator_value = None
     completed_at = None
     deadline = started + args.timeout_hours * 3600
     status = "timeout"
@@ -231,20 +229,24 @@ def main() -> int:
             # Completion: the indexer's own index has reached the tip and the tip block is served.
             if completed_at is None:
                 if system.family == "zaino":
+                    # Recorded for reference only: 0.10.1 exports height metrics, 0.9.0 does not, and the
+                    # metrics reach the target before the txout-set accumulator rebuild is committed.
                     finalized = last_metrics.get("zaino_sync_finalized_height") or last_metrics.get("zaino_db_tip_height") or 0
                     sync_target = last_metrics.get("zaino_sync_target_height") or 0
-                    if finalized and sync_target and finalized >= sync_target and "index_reached_sync_target" not in events:
-                        events["index_reached_sync_target"] = t
-                        accumulator_seen_change = t
+                    if finalized and sync_target and finalized >= sync_target:
+                        events.setdefault("index_reached_sync_target", t)
                     acc = last_metrics.get("zaino_sync_accumulator_height")
-                    if acc != accumulator_value:
-                        accumulator_value, accumulator_seen_change = acc, t
-                    # The txout-set accumulator rebuild runs after the block sync; wait for it unless it
-                    # does not exist in this version or stops moving for 10 minutes after the sync.
-                    accumulator_done = acc is None or acc >= finalized or t - accumulator_seen_change > 600
-                    if "index_reached_sync_target" in events and accumulator_done and "first_ok_GetBlock-target" in events:
-                        if acc is not None and acc >= finalized:
-                            events.setdefault("accumulator_caught_up", t)
+                    if acc is not None and finalized and acc >= finalized:
+                        events.setdefault("accumulator_caught_up", t)
+                    # Completion, the same for every version: Zaino logs this once the block sync and the
+                    # accumulator rebuild are committed and reads leave the validator passthrough.
+                    if t - last["journal"] >= 10:
+                        last["journal"] = t
+                        marker = "finalised state switched back to the persistent database"
+                        match = re.search(rf"^(\d+\.\d+) .*{re.escape(marker)}", unit.journal(started), re.M)
+                        if match:
+                            events.setdefault("persistent_db_online", float(match.group(1)))
+                    if "persistent_db_online" in events and "first_ok_GetBlock-target" in events:
                         completed_at = t
                 elif t - last["journal"] >= 10:
                     last["journal"] = t
@@ -277,7 +279,10 @@ def main() -> int:
                       f"heap {stats['anon_bytes'] / 2**30:.2f} GiB, "
                       f"{' '.join(f'{k}={v:.0f}' for k, v in heights) or 'no height metrics yet'} | {last_line}",
                       file=sys.stderr, flush=True)
-                fingerprint = (len(journal_lines), heights, index_bytes_now)
+                # Lines Zaino logs for the probes' own requests and its status heartbeat are not progress.
+                noise = ("received call", "rpc/grpc/service.rs", "Zaino status check", "zainod/src/indexer.rs")
+                own_lines = sum(not any(n in line for n in noise) for line in journal_lines)
+                fingerprint = (own_lines, heights, index_bytes_now)
                 if fingerprint != progress_fingerprint:
                     progress_fingerprint, progress_seen = fingerprint, t
                 elif t - progress_seen > args.stall_minutes * 60:
@@ -353,8 +358,8 @@ def main() -> int:
         "config_file": config.name,
         "provenance": common.provenance(system.name),
         "definitions": {
-            "completed": ("zaino: finalized height >= Zaino's sync target, txout accumulator caught up (or idle 10 min), "
-                          "and GetBlock at Zebra's start-of-run tip answered"
+            "completed": ("zaino: 'finalised state switched back to the persistent database' logged (block sync and "
+                          "txout-set accumulator committed) and GetBlock at Zebra's start-of-run tip answered"
                           if system.family == "zaino" else
                           "ztreamer: 'historical compact index complete' logged and gRPC answering"),
             "clock": "starts at systemd unit start; includes node startup (embedded for Ztreamer, already running for Zaino)",
