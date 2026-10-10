@@ -1,0 +1,35 @@
+method,case,volatile,zebra_status,zaino-0.10.1_status,zaino-0.10.1_matches_zebra
+getinfo,,True,ok,ok,
+getblockchaininfo,,True,ok,ok,
+getblockcount,,True,ok,ok,
+getbestblockhash,,True,ok,ok,
+getdifficulty,,True,ok,ok,
+getmininginfo,,True,ok,ok,
+getnetworksolps,,True,ok,ok,
+getpeerinfo,,True,ok,ok,
+getmempoolinfo,,True,ok,ok,
+getrawmempool,,True,ok,ok,
+getchaintips,,True,error -32601,ok,
+gettxoutsetinfo,,True,error -32601,ok,
+getblock,height verbosity 0,False,ok,ok,yes
+getblock,height verbosity 1,False,ok,ok,NO
+getblock,height verbosity 2,False,ok,ok,NO
+getblock,hash verbosity 1,False,ok,ok,NO
+getblockheader,verbose,False,ok,ok,yes
+getblockheader,hex,False,ok,ok,yes
+getblockdeltas,,False,error -32601,ok,
+getblocksubsidy,,False,ok,ok,yes
+getrawtransaction,hex,False,ok,ok,NO
+getrawtransaction,verbose,False,ok,ok,yes
+getspentinfo,output 0,False,error -32601,error -1,
+sendrawtransaction,already mined,True,error -25,error -8,
+validateaddress,,False,ok,ok,yes
+z_validateaddress,,False,ok,ok,NO
+z_gettreestate,,False,ok,ok,yes
+z_getsubtreesbyindex,sapling 0..3,False,ok,ok,yes
+z_getsubtreesbyindex,orchard 0..3,False,ok,ok,yes
+getaddressbalance,,True,ok,ok,
+getaddresstxids,"quiet, full range",False,ok,ok,yes
+getaddressutxos,,True,ok,ok,
+getaddressdeltas,"quiet, full range",False,error -32601,ok,
+gettxout,unspent output,False,ok,ok,NO

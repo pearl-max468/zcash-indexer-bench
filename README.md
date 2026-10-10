@@ -4,8 +4,10 @@ An independent, reproducible compatibility and performance comparison of two Zca
 **Zaino** (Zingo Labs, part of the Z3 stack) and **Ztreamer** (Rust indexer with an embedded Zakura node).
 Funded by a ZecHub bounty. Not affiliated with either project.
 
-> **Status:** measurement campaign in progress on GitHub Actions. Results, raw data and the
-> written comparison will be added under `results/` and `report/`.
+> **Results (campaign of 2026-10-09/10):** the written comparison is
+> [`report/report.md`](report/report.md); tables and figures are in [`results/`](results); run
+> outputs are in [`runs/`](runs), and every per-request sample is in the
+> [raw-data release](https://github.com/pearl-max468/zcash-indexer-bench/releases/tag/results-2026-10-10).
 
 ## Where it runs, and on what data
 
@@ -96,6 +98,9 @@ python bench/compare_compat.py --runs runs --out results/compat
 python bench/report.py --runs runs --out results
 ```
 
+`bench/compare_runs.py` compares a diagnostic run (e.g. `tcp_nodelay: true`) with default runs of the
+same build on the same runner CPU.
+
 The workflow: `build` compiles every pinned binary; `prepare` starts the frozen Zebra, then derives
 fixtures and a fixed upper height (tip - 100); `bench` runs one system per job: index build from
 empty (cold page cache), serving suites, and both compatibility suites with Zebra as the reference.
@@ -139,8 +144,11 @@ ci/                 runner setup: disk cleanup, snapshot download and verificati
 server/             host setup for mainnet: bootstrap, Zebra, snapshots, builds, status
 configs/            Zebra config and the Zaino / Zakura config templates
 proto/              lightwallet-protocol v0.5.0 (MIT, Electric Coin Company), as both projects vendor it
-bench/              compatibility suites, index-build and serving runners, fixtures
-runs/               raw outputs, one directory per run
+bench/              compatibility suites, index-build and serving runners, fixtures, report builders
+runs/               outputs of the campaign, one directory per run (provenance in runs/README.md)
+runs-diagnostic/    TCP_NODELAY diagnostic runs (not in the main tables)
+results/            tables (.md, .csv) and figures generated from runs/
+report/             the written comparison
 ```
 
 ## License

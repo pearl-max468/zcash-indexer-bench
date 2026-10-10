@@ -1,0 +1,23 @@
+# Zaino in `direct` mode beside the Zebra node: JSON-RPC to Zebra plus direct reads of Zebra's
+# state database. Rendered by bench/common.py; @-delimited placeholders come from versions.env.
+# Every value not set here is the project default (storage budgets, cache sizes, mempool bounds).
+
+backend = "direct"
+zebra_db_path = "/zbench/zebra"
+network = "Testnet"
+ephemeral_finalised_state = false
+metrics_endpoint = "127.0.0.1:19998"
+
+[grpc_settings]
+listen_address = "127.0.0.1:8137"
+
+[json_server_settings]
+json_rpc_listen_address = "127.0.0.1:8237"
+
+[validator_settings]
+validator_jsonrpc_listen_address = "127.0.0.1:8232"
+validator_grpc_listen_address = "127.0.0.1:8230"
+validator_cookie_path = "/zbench/zebra-cookie/.cookie"
+
+[storage.database]
+path = "/zbench/index/zaino-0.10.1"

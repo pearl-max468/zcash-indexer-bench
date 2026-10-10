@@ -1,0 +1,73 @@
+{
+  "system": "zaino-0.10.1",
+  "family": "zaino",
+  "status": "complete",
+  "started_utc": "2026-10-10T19:30:16.565809+00:00",
+  "cache": "cold (page cache dropped)",
+  "exclusive": false,
+  "frozen": true,
+  "network": "Testnet",
+  "target": {
+    "height": 4382897,
+    "hash": "00005894e6410b9d9524e38d725e6595ef4c8f85d4deb9e56b340751b0c3d678",
+    "block_time": 1790138733,
+    "source": "zebra getblockcount"
+  },
+  "tip_served_at_end": 4382897,
+  "phases_seconds_from_start": {
+    "accumulator_caught_up": 1304.388,
+    "completed": 1306.388,
+    "first_ok_GetBlock-historical": 5.956,
+    "first_ok_GetBlock-target": 5.956,
+    "first_ok_GetLightdInfo": 5.956,
+    "index_reached_sync_target": 1248.383,
+    "persistent_db_online": 1303.959,
+    "process_started": 0.0,
+    "stopped": 1426.689
+  },
+  "headline": {
+    "seconds_to_completion": 1306.388,
+    "seconds_to_first_grpc_answer": 5.956,
+    "seconds_to_serve_historical_block": 5.956,
+    "shutdown_seconds": 0.268
+  },
+  "resources": {
+    "indexer_process": {
+      "cpu_seconds": 2278.638422,
+      "peak_anon_memory_bytes": 1760051200,
+      "peak_rss_bytes": 10516885504,
+      "peak_cgroup_memory_bytes": 14985396224,
+      "read_bytes": 11677220864,
+      "write_bytes": 41925058560,
+      "note": "Zaino process only; Zebra reported separately"
+    },
+    "zebrad_during_run": {
+      "cpu_seconds": 217.524523,
+      "read_bytes": 3825057792,
+      "write_bytes": 246976512,
+      "peak_anon_memory_bytes": 382095360,
+      "peak_cgroup_memory_bytes_sampled": 4820377600
+    },
+    "index_bytes_on_disk": 23692050432
+  },
+  "command": "/opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r2/index/zainod.toml",
+  "config_file": "zainod.toml",
+  "provenance": {
+    "name": "zainod-0.10.1",
+    "remote": "https://github.com/zingolabs/zaino",
+    "commit": "3244a74bb09fa6a09a4b2deeb6be53bab0890747",
+    "describe": "0.10.1",
+    "dirty_files": 0,
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "build_command": "cargo build --locked --release -p zainod --bin zainod --features prometheus",
+    "binary": "/opt/zbench/bin/zainod-0.10.1",
+    "binary_sha256": "8359fb27f8a1403e37e44561208e24d10c050f65635405e4d98eb2a54f6a8597",
+    "recorded_utc": "2026-10-09T00:43:03.189951+00:00"
+  },
+  "definitions": {
+    "completed": "zaino: 'finalised state switched back to the persistent database' logged (block sync and txout-set accumulator committed) and GetBlock at Zebra's start-of-run tip answered",
+    "clock": "starts at systemd unit start; includes node startup (embedded for Ztreamer, already running for Zaino)",
+    "memory": "peak_anon_memory_bytes: highest anonymous (heap) memory of the cgroup, sampled each second; peak_rss_bytes: VmHWM of the main process (includes mmap'd file pages such as LMDB); peak_cgroup_memory_bytes: memory.peak, which also counts evictable page cache"
+  }
+}

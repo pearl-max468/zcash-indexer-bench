@@ -1,0 +1,66 @@
+{
+  "system": "ztreamer-master",
+  "family": "ztreamer",
+  "status": "complete",
+  "started_utc": "2026-10-10T19:31:04.759609+00:00",
+  "cache": "cold (page cache dropped)",
+  "exclusive": false,
+  "frozen": true,
+  "network": "Testnet",
+  "target": {
+    "height": 4382897,
+    "hash": "00005894e6410b9d9524e38d725e6595ef4c8f85d4deb9e56b340751b0c3d678",
+    "block_time": 1790138733,
+    "source": "frozen snapshot tip (zebra getblockcount)"
+  },
+  "tip_served_at_end": 4382897,
+  "phases_seconds_from_start": {
+    "completed": 158.82,
+    "first_ok_GetBlock-historical": 157.82,
+    "first_ok_GetBlock-target": 157.82,
+    "first_ok_GetLightdInfo": 157.82,
+    "historical_index_complete": 154.691,
+    "node_near_tip": 78.303,
+    "process_started": 0.0,
+    "stopped": 284.443
+  },
+  "headline": {
+    "seconds_to_completion": 158.82,
+    "seconds_to_first_grpc_answer": 157.82,
+    "seconds_to_serve_historical_block": 157.82,
+    "shutdown_seconds": 5.597
+  },
+  "resources": {
+    "indexer_process": {
+      "cpu_seconds": 208.369605,
+      "peak_anon_memory_bytes": 825294848,
+      "peak_rss_bytes": 1560875008,
+      "peak_cgroup_memory_bytes": 12364980224,
+      "read_bytes": 14498525184,
+      "write_bytes": 8783306752,
+      "note": "Ztreamer's figure includes its embedded Zakura node"
+    },
+    "zebrad_during_run": null,
+    "index_bytes_on_disk": 1547616256
+  },
+  "command": "/opt/zbench/bin/ztreamerd-master --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-master-r2/index/zakura.toml --index-dir /zbench/index/ztreamer-master --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999",
+  "config_file": "zakura.toml",
+  "provenance": {
+    "name": "ztreamerd-master",
+    "remote": "https://github.com/distractedm1nd/ztreamer",
+    "commit": "6232ae08e6c74baced3905c08564a9c90a816bfc",
+    "describe": "v0.1.0-5-g6232ae0",
+    "dirty_files": 0,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+    "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+    "build_command": "cargo build --locked --release -p ztreamerd --bin ztreamerd",
+    "binary": "/opt/zbench/bin/ztreamerd-master",
+    "binary_sha256": "fe54d79417b547936dcc876bf1c9c1465acdf1d5cd40309e1ccff398a78d670d",
+    "recorded_utc": "2026-10-09T00:45:06.074805+00:00"
+  },
+  "definitions": {
+    "completed": "ztreamer: 'historical compact index complete' logged and gRPC answering",
+    "clock": "starts at systemd unit start; includes node startup (embedded for Ztreamer, already running for Zaino)",
+    "memory": "peak_anon_memory_bytes: highest anonymous (heap) memory of the cgroup, sampled each second; peak_rss_bytes: VmHWM of the main process (includes mmap'd file pages such as LMDB); peak_cgroup_memory_bytes: memory.peak, which also counts evictable page cache"
+  }
+}

@@ -1,0 +1,30 @@
+1791661853.037399 runnervmmprz5 systemd[1]: Started zbench-serve-zaino-0.9.0.service - /opt/zbench/bin/zainod-0.9.0 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.9.0-r1/serving/zainod.toml.
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▓░▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▓▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒██▓▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒██▓▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███▓██▓▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▒▓▓▓▓▒███▓░▒▓▓████████████████▓▓▒▒▒▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▓▓▓▓▒▓████▓▓███████████████████▓▒▓▓▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▓▓▓▓▓▒▒▓▓▓▓████████████████████▓▒▓▓▓▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▓▓▓▓▓█████████████████████████▓▒▓▓▓▓▓▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▓▓▓▒▓█████████████████████████▓▓▓▓▓▓▓▓▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▓▓▓████████████████████████▓▓▓▓▓▓▓▓▓▒▒▒▒
+1791661853.042245 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▓▒███████████████████████▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▓███████████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▓███████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒▒▒▓██████████▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒███▓▒▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▓████▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        ▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:              Thank you for using ZingoLabs Zaino!
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:        - Donate to us at https://free2z.cash/zingolabs.
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]: ****** Please note Zaino is currently in development and should not be used to run mainnet nodes. ******
+1791661853.042717 runnervmmprz5 zainod-0.9.0[5979]:     
+1791664025.211697 runnervmmprz5 systemd[1]: Stopping zbench-serve-zaino-0.9.0.service - /opt/zbench/bin/zainod-0.9.0 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.9.0-r1/serving/zainod.toml...
+1791664025.507290 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.9.0.service: Deactivated successfully.
+1791664025.507496 runnervmmprz5 systemd[1]: Stopped zbench-serve-zaino-0.9.0.service - /opt/zbench/bin/zainod-0.9.0 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.9.0-r1/serving/zainod.toml.
+1791664025.507729 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.9.0.service: Consumed 7min 15.306s CPU time, 13.7G memory peak, 0B memory swap peak, read 18.7G from disk, written 128.0K to disk.

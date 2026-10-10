@@ -1,0 +1,4 @@
+1791664053.043475 runnervmmprz5 systemd[1]: Stopping zbench-serve-zaino-0.10.1.service - /opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r2/serving/zainod.toml...
+1791664053.730783 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.10.1.service: Deactivated successfully.
+1791664053.731076 runnervmmprz5 systemd[1]: Stopped zbench-serve-zaino-0.10.1.service - /opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r2/serving/zainod.toml.
+1791664053.731331 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.10.1.service: Consumed 11min 55.833s CPU time, 13.8G memory peak, 0B memory swap peak, read 18.8G from disk, written 128.0K to disk.

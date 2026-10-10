@@ -1,0 +1,30 @@
+Oct 10 20:33:10 runnervmmprz5 systemd[1]: Started zbench-compat-zaino-0.10.1.service - /opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r1/compat/zainod.toml.
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▓░▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▓▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒██▓▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒██▓▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███▓██▓▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▒▓▓▓▓▒███▓░▒▓▓████████████████▓▓▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▓▓▓▓▒▓████▓▓███████████████████▓▒▓▓▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▓▓▓▓▓▒▒▓▓▓▓████████████████████▓▒▓▓▓▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▓▓▓▓▓█████████████████████████▓▒▓▓▓▓▓▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▓▓▓▒▓█████████████████████████▓▓▓▓▓▓▓▓▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▓▓▓████████████████████████▓▓▓▓▓▓▓▓▓▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▓▒███████████████████████▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▓███████████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▓███████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒▒▒▓██████████▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒███▓▒▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▓████▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        ▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:              Thank you for using ZingoLabs Zaino!
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:        - Donate to us at https://free2z.cash/zingolabs.
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]: ****** Please note Zaino is currently in development and should not be used to run mainnet nodes. ******
+Oct 10 20:33:10 runnervmmprz5 zainod-0.10.1[8847]:     
+Oct 10 20:48:20 runnervmmprz5 zainod-0.10.1[8847]:   20:48:20.775  WARN zaino_serve::rpc::jsonrpc::service: z_validateaddress is deprecated: delegating address validation to a non-client actor encourages information leakage. This service is only offered for bugwards compatibility with the legacy full node, and WILL BE REMOVED.
+Oct 10 20:48:20 runnervmmprz5 zainod-0.10.1[8847]:     at packages/zaino-serve/src/rpc/jsonrpc/service.rs:750
+Oct 10 20:48:20 runnervmmprz5 zainod-0.10.1[8847]:   20:48:20.775  WARN zaino_address::classify: z_validateaddress is deprecated: delegating address validation to a non-client actor encourages information leakage. This service is only offered for bugwards compatibility with the legacy full node, and WILL BE REMOVED.
+Oct 10 20:48:20 runnervmmprz5 zainod-0.10.1[8847]:     at packages/zaino-address/src/classify.rs:54

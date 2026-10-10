@@ -1,0 +1,1169 @@
+{
+  "meta": {
+    "system": "ztreamer-v0.1.0",
+    "repeat": 1,
+    "upper": 4382797,
+    "lower": 280000,
+    "seed": 20261009,
+    "server_cpus": "0-1",
+    "client_cpus": "2-3",
+    "fixtures": {
+      "addresses": {
+        "moderate": "tmJk517HdhVV1i29uKGtNUUNTTBQT7CFEgs",
+        "active": "t29fBCFbhgsjL3XYEZ1yk1TUh7eTusB6dPg",
+        "quiet": "tmDWAnsTyPamHw6wRznrhsTGo1NFPF3ySAH"
+      },
+      "txids": [
+        "55329968cb2890b84e06475f754939fa742267af98bc732678d35e86adf9e50f",
+        "f3572cc3657ec2fc0b015b88e221d6838f55a4e96c5f794f3c68677455e6b3da",
+        "e1588ef00f6d2959f1fa268cc8d025b9b4f53850c20181d2b217ce97eeda9afa",
+        "8a592ee1bec7694300c2fa374e90f3009b5b109dd9bbd830a17bbf80afc263d3",
+        "4850cae5b2dc2e36c3ec60372c1014fc4fbee2fc2601b2c737689a5dbda772e7"
+      ],
+      "transactions": [
+        {
+          "txid": "55329968cb2890b84e06475f754939fa742267af98bc732678d35e86adf9e50f",
+          "height": 1589366,
+          "kind": "coinbase",
+          "version": 4
+        },
+        {
+          "txid": "f3572cc3657ec2fc0b015b88e221d6838f55a4e96c5f794f3c68677455e6b3da",
+          "height": 580579,
+          "kind": "transparent-only",
+          "version": 4
+        },
+        {
+          "txid": "e1588ef00f6d2959f1fa268cc8d025b9b4f53850c20181d2b217ce97eeda9afa",
+          "height": 538286,
+          "kind": "sapling-v4",
+          "version": 4
+        },
+        {
+          "txid": "8a592ee1bec7694300c2fa374e90f3009b5b109dd9bbd830a17bbf80afc263d3",
+          "height": 3692198,
+          "kind": "orchard",
+          "version": 5
+        },
+        {
+          "txid": "4850cae5b2dc2e36c3ec60372c1014fc4fbee2fc2601b2c737689a5dbda772e7",
+          "height": 1864497,
+          "kind": "orchard+sapling",
+          "version": 5
+        }
+      ],
+      "address_history_lengths": {
+        "tmJk517HdhVV1i29uKGtNUUNTTBQT7CFEgs": 207,
+        "t29fBCFbhgsjL3XYEZ1yk1TUh7eTusB6dPg": 35000,
+        "tmDWAnsTyPamHw6wRznrhsTGo1NFPF3ySAH": 7
+      },
+      "selection": {
+        "seed": 20261009,
+        "network": "Testnet",
+        "lower": 280000,
+        "upper": 4382797,
+        "blocks_visited": 600,
+        "missing_kinds": [
+          "sprout",
+          "sapling-v5"
+        ],
+        "ztreamer_published": {
+          "addresses": {},
+          "txids": []
+        }
+      }
+    },
+    "provenance": {
+      "name": "ztreamerd-v0.1.0",
+      "remote": "https://github.com/distractedm1nd/ztreamer",
+      "commit": "c40f3c31d8fb3f850c3fa90d9490b4df50aa88c4",
+      "describe": "v0.1.0",
+      "dirty_files": 0,
+      "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+      "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+      "build_command": "cargo build --locked --release -p ztreamerd --bin ztreamerd",
+      "binary": "/opt/zbench/bin/ztreamerd-v0.1.0",
+      "binary_sha256": "ca5aea418fd3b0e802db793f509d1499bec0f5aa12d39f0053dcfb9c74b4de64",
+      "recorded_utc": "2026-10-09T00:41:35.005215+00:00"
+    },
+    "command": "/opt/zbench/bin/ztreamerd-v0.1.0 --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-v0.1.0-r1-nodelay/serving/zakura.toml --index-dir /zbench/index/ztreamer-v0.1.0 --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999",
+    "ghz": "",
+    "started_utc": "2026-10-10T19:44:35.535462+00:00",
+    "cache": "warm: index built earlier, no cache drop; warmups excluded via --skipFirst",
+    "tcp_nodelay_shim": true,
+    "seconds_to_ready": 77.2702853679657,
+    "lightd_info": {
+      "version": "0.1.0",
+      "vendor": "Ztreamer",
+      "taddrSupport": true,
+      "chainName": "test",
+      "saplingActivationHeight": "280000",
+      "consensusBranchId": "37a5165b",
+      "blockHeight": "4382897",
+      "estimatedHeight": "4382897",
+      "zcashdBuild": "v1.3.1+gf4d44dd5cce2",
+      "zcashdSubversion": "/Zakura:1.3.1/",
+      "lightwalletProtocolVersion": "v0.5.0",
+      "gitCommit": "",
+      "branch": "",
+      "buildDate": "",
+      "buildUser": "",
+      "donationAddress": "",
+      "upgradeName": "",
+      "upgradeHeight": "0"
+    },
+    "finished_utc": "2026-10-10T19:53:42.864012+00:00"
+  },
+  "results": [
+    {
+      "suite": "latency",
+      "name": "GetLightdInfo",
+      "method": "GetLightdInfo",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetLightdInfo --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetLightdInfo.json --total 1050 --skipFirst 50 --data '{}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.377622127532959,
+      "report_file": "latency--GetLightdInfo.json",
+      "client_cpu_seconds": 0.446803,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 2934.8934334618016,
+      "total_ns": 340727874,
+      "latency_ns": {
+        "average": 191784,
+        "fastest": 123117,
+        "slowest": 624445,
+        "p50": 166520,
+        "p90": 295221,
+        "p95": 356395,
+        "p99": 457346
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.100109,
+          "peak_anon_memory_bytes_sampled": 328204288,
+          "peak_cgroup_memory_bytes_sampled": 1140097024,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetLatestBlock",
+      "method": "GetLatestBlock",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetLatestBlock --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetLatestBlock.json --total 1050 --skipFirst 50 --data '{}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.3394613265991211,
+      "report_file": "latency--GetLatestBlock.json",
+      "client_cpu_seconds": 0.441928,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 3091.872738258376,
+      "total_ns": 323428577,
+      "latency_ns": {
+        "average": 176006,
+        "fastest": 116287,
+        "slowest": 674589,
+        "p50": 151645,
+        "p90": 279561,
+        "p95": 343241,
+        "p99": 423833
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.090288,
+          "peak_anon_memory_bytes_sampled": 328204288,
+          "peak_cgroup_memory_bytes_sampled": 1140088832,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetBlock",
+      "method": "GetBlock",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlock --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetBlock.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.4535984992980957,
+      "report_file": "latency--GetBlock.json",
+      "client_cpu_seconds": 0.49209400000000003,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 2316.8240697632796,
+      "total_ns": 431625350,
+      "latency_ns": {
+        "average": 272279,
+        "fastest": 203267,
+        "slowest": 890302,
+        "p50": 242891,
+        "p90": 376962,
+        "p95": 452657,
+        "p99": 578540
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.191196,
+          "peak_anon_memory_bytes_sampled": 328204288,
+          "peak_cgroup_memory_bytes_sampled": 1140793344,
+          "read_bytes": 884736,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "latency",
+      "name": "GetBlockNullifiers",
+      "method": "GetBlockNullifiers",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockNullifiers --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetBlockNullifiers.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.4477078914642334,
+      "report_file": "latency--GetBlockNullifiers.json",
+      "client_cpu_seconds": 0.48463699999999993,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 2351.2084409624467,
+      "total_ns": 425313206,
+      "latency_ns": {
+        "average": 268118,
+        "fastest": 207370,
+        "slowest": 812534,
+        "p50": 240872,
+        "p90": 338089,
+        "p95": 435533,
+        "p99": 589671
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.191435,
+          "peak_anon_memory_bytes_sampled": 328204288,
+          "peak_cgroup_memory_bytes_sampled": 1141039104,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "latency",
+      "name": "GetTreeState",
+      "method": "GetTreeState",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetTreeState --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetTreeState.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.8770654201507568,
+      "report_file": "latency--GetTreeState.json",
+      "client_cpu_seconds": 0.528159,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 1168.6277759963996,
+      "total_ns": 855704460,
+      "latency_ns": {
+        "average": 669906,
+        "fastest": 397833,
+        "slowest": 4539237,
+        "p50": 620776,
+        "p90": 789251,
+        "p95": 970579,
+        "p99": 1294394
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.613289,
+          "peak_anon_memory_bytes_sampled": 332410880,
+          "peak_cgroup_memory_bytes_sampled": 1158262784,
+          "read_bytes": 12652544,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "latency",
+      "name": "GetLatestTreeState",
+      "method": "GetLatestTreeState",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetLatestTreeState --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetLatestTreeState.json --total 1050 --skipFirst 50 --data '{}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.6475100517272949,
+      "report_file": "latency--GetLatestTreeState.json",
+      "client_cpu_seconds": 0.4917869999999999,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 1584.1415969631955,
+      "total_ns": 631256702,
+      "latency_ns": {
+        "average": 470463,
+        "fastest": 374409,
+        "slowest": 1779918,
+        "p50": 443668,
+        "p90": 519538,
+        "p95": 704905,
+        "p99": 885914
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.514079,
+          "peak_anon_memory_bytes_sampled": 332410880,
+          "peak_cgroup_memory_bytes_sampled": 1158164480,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetSubtreeRoots/sapling-10",
+      "method": "GetSubtreeRoots",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{\"startIndex\":0,\"shieldedProtocol\":\"sapling\",\"maxEntries\":10}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetSubtreeRoots --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetSubtreeRoots_sapling-10.json --total 1050 --skipFirst 50 --data '{\"startIndex\":0,\"shieldedProtocol\":\"sapling\",\"maxEntries\":10}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.6782045364379883,
+      "report_file": "latency--GetSubtreeRoots_sapling-10.json",
+      "client_cpu_seconds": 0.6709040000000002,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 1510.7145510928783,
+      "total_ns": 661938418,
+      "latency_ns": {
+        "average": 507163,
+        "fastest": 388798,
+        "slowest": 1478085,
+        "p50": 496477,
+        "p90": 560346,
+        "p95": 652966,
+        "p99": 827166
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.592691,
+          "peak_anon_memory_bytes_sampled": 332410880,
+          "peak_cgroup_memory_bytes_sampled": 1158590464,
+          "read_bytes": 176128,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetSubtreeRoots/orchard-10",
+      "method": "GetSubtreeRoots",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{\"startIndex\":0,\"shieldedProtocol\":\"orchard\",\"maxEntries\":10}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetSubtreeRoots --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetSubtreeRoots_orchard-10.json --total 1050 --skipFirst 50 --data '{\"startIndex\":0,\"shieldedProtocol\":\"orchard\",\"maxEntries\":10}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.5516102313995361,
+      "report_file": "latency--GetSubtreeRoots_orchard-10.json",
+      "client_cpu_seconds": 0.5461119999999997,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 1869.9534339520992,
+      "total_ns": 534772675,
+      "latency_ns": {
+        "average": 383807,
+        "fastest": 296190,
+        "slowest": 1081996,
+        "p50": 367546,
+        "p90": 447312,
+        "p95": 532556,
+        "p99": 719961
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.409166,
+          "peak_anon_memory_bytes_sampled": 332410880,
+          "peak_cgroup_memory_bytes_sampled": 1158242304,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetMempoolTx",
+      "method": "GetMempoolTx",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "data_json": "{}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetMempoolTx --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetMempoolTx.json --total 1050 --skipFirst 50 --data '{}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.45177507400512695,
+      "report_file": "latency--GetMempoolTx.json",
+      "client_cpu_seconds": 0.3961490000000001,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 2290.419215131191,
+      "total_ns": 436601297,
+      "latency_ns": {
+        "average": 306499,
+        "fastest": 249545,
+        "slowest": 661391,
+        "p50": 293706,
+        "p90": 339692,
+        "p95": 419340,
+        "p99": 519428
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.235328,
+          "peak_anon_memory_bytes_sampled": 332410880,
+          "peak_cgroup_memory_bytes_sampled": 1158238208,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "latency",
+      "name": "GetTransaction",
+      "method": "GetTransaction",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetTransaction --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetTransaction.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-txids.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.5402078628540039,
+      "report_file": "latency--GetTransaction.json",
+      "client_cpu_seconds": 0.4949060000000002,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 1905.4457057108277,
+      "total_ns": 524811595,
+      "latency_ns": {
+        "average": 365626,
+        "fastest": 256639,
+        "slowest": 2170832,
+        "p50": 319586,
+        "p90": 484785,
+        "p95": 572598,
+        "p99": 747916
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.304187,
+          "peak_anon_memory_bytes_sampled": 332619776,
+          "peak_cgroup_memory_bytes_sampled": 1158668288,
+          "read_bytes": 114688,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-txids.json"
+    },
+    {
+      "suite": "latency",
+      "name": "GetTaddressBalance",
+      "method": "GetTaddressBalance",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetTaddressBalance --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetTaddressBalance.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-balances.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 0.4699134826660156,
+      "report_file": "latency--GetTaddressBalance.json",
+      "client_cpu_seconds": 0.4470250000000001,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 2208.5164440083086,
+      "total_ns": 452792644,
+      "latency_ns": {
+        "average": 309568,
+        "fastest": 255306,
+        "slowest": 802429,
+        "p50": 289299,
+        "p90": 353948,
+        "p95": 471610,
+        "p99": 612864
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.246171,
+          "peak_anon_memory_bytes_sampled": 333295616,
+          "peak_cgroup_memory_bytes_sampled": 1160216576,
+          "read_bytes": 700416,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-balances.json"
+    },
+    {
+      "suite": "latency",
+      "name": "GetAddressUtxos",
+      "method": "GetAddressUtxos",
+      "concurrency": 1,
+      "total": 1050,
+      "skip_first": 50,
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetAddressUtxos --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/latency--GetAddressUtxos.json --total 1050 --skipFirst 50 --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-utxos.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 173.2541468143463,
+      "report_file": "latency--GetAddressUtxos.json",
+      "client_cpu_seconds": 53.973327999999995,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 5.772430408645883,
+      "total_ns": 173237255230,
+      "latency_ns": {
+        "average": 164392121,
+        "fastest": 705216,
+        "slowest": 512078274,
+        "p50": 3698997,
+        "p90": 490906335,
+        "p95": 493367931,
+        "p99": 497847399
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 128.916337,
+          "peak_anon_memory_bytes_sampled": 422346752,
+          "peak_cgroup_memory_bytes_sampled": 1259986944,
+          "read_bytes": 10338304,
+          "write_bytes": 65536
+        }
+      },
+      "data_file": "data-utxos.json"
+    },
+    {
+      "suite": "ranges",
+      "name": "GetBlockRange/100",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "total": 1002,
+      "skip_first": 2,
+      "blocks_per_call": 100,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 100) 4102699)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 100) 4102699)) 99 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/ranges--GetBlockRange_100.json --total 1002 --skipFirst 2 --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 100) 4102699)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 100) 4102699)) 99 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 1.147920846939087,
+      "report_file": "ranges--GetBlockRange_100.json",
+      "client_cpu_seconds": 1.423900999999999,
+      "count": 1000,
+      "ok": 1000,
+      "status_codes": {
+        "OK": 1000
+      },
+      "errors": {},
+      "rps": 881.5039768818318,
+      "total_ns": 1134424831,
+      "latency_ns": {
+        "average": 933391,
+        "fastest": 642117,
+        "slowest": 6368539,
+        "p50": 778403,
+        "p90": 1351994,
+        "p95": 1558728,
+        "p99": 2212160
+      },
+      "blocks_per_second": 88150.39768818318,
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.165529,
+          "peak_anon_memory_bytes_sampled": 422346752,
+          "peak_cgroup_memory_bytes_sampled": 1260941312,
+          "read_bytes": 1142784,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "ranges",
+      "name": "GetBlockRange/1000",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "total": 302,
+      "skip_first": 2,
+      "blocks_per_call": 1000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 1000) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 1000) 4101799)) 999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/ranges--GetBlockRange_1000.json --total 302 --skipFirst 2 --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 1000) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 1000) 4101799)) 999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 1.947178840637207,
+      "report_file": "ranges--GetBlockRange_1000.json",
+      "client_cpu_seconds": 2.263183000000003,
+      "count": 300,
+      "ok": 300,
+      "status_codes": {
+        "OK": 300
+      },
+      "errors": {},
+      "rps": 155.0304611937576,
+      "total_ns": 1935103577,
+      "latency_ns": {
+        "average": 6207334,
+        "fastest": 4414822,
+        "slowest": 20614995,
+        "p50": 5735424,
+        "p90": 8460712,
+        "p95": 9768868,
+        "p99": 12852121
+      },
+      "blocks_per_second": 155030.4611937576,
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.20501,
+          "peak_anon_memory_bytes_sampled": 422346752,
+          "peak_cgroup_memory_bytes_sampled": 1262206976,
+          "read_bytes": 1339392,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "ranges",
+      "name": "GetBlockRange/10000",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "total": 102,
+      "skip_first": 2,
+      "blocks_per_call": 10000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 10000) 4092799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 10000) 4092799)) 9999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/ranges--GetBlockRange_10000.json --total 102 --skipFirst 2 --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 10000) 4092799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 10000) 4092799)) 9999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 6.734044551849365,
+      "report_file": "ranges--GetBlockRange_10000.json",
+      "client_cpu_seconds": 7.929226,
+      "count": 100,
+      "ok": 100,
+      "status_codes": {
+        "OK": 100
+      },
+      "errors": {},
+      "rps": 14.87732340991463,
+      "total_ns": 6721639185,
+      "latency_ns": {
+        "average": 65736062,
+        "fastest": 46293259,
+        "slowest": 350629168,
+        "p50": 50500926,
+        "p90": 75919755,
+        "p95": 117799350,
+        "p99": 174221219
+      },
+      "blocks_per_second": 148773.2340991463,
+      "resources": {
+        "server": {
+          "cpu_seconds": 0.72766,
+          "peak_anon_memory_bytes_sampled": 422346752,
+          "peak_cgroup_memory_bytes_sampled": 1272172544,
+          "read_bytes": 9801728,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "ranges",
+      "name": "GetBlockRange/100000",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "total": 12,
+      "skip_first": 2,
+      "blocks_per_call": 100000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 100000) 4002799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 100000) 4002799)) 99999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/ranges--GetBlockRange_100000.json --total 12 --skipFirst 2 --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 100000) 4002799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 100000) 4002799)) 99999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 6.589617490768433,
+      "report_file": "ranges--GetBlockRange_100000.json",
+      "client_cpu_seconds": 8.060553000000002,
+      "count": 10,
+      "ok": 10,
+      "status_codes": {
+        "OK": 10
+      },
+      "errors": {},
+      "rps": 1.5203447016728313,
+      "total_ns": 6577455750,
+      "latency_ns": {
+        "average": 546607711,
+        "fastest": 476466283,
+        "slowest": 738654530,
+        "p50": 501566354,
+        "p90": 673501353,
+        "p95": 738654530,
+        "p99": 738654530
+      },
+      "blocks_per_second": 152034.47016728314,
+      "resources": {
+        "server": {
+          "cpu_seconds": 1.018567,
+          "peak_anon_memory_bytes_sampled": 422346752,
+          "peak_cgroup_memory_bytes_sampled": 1277448192,
+          "read_bytes": 5337088,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlockRange/1000 x1",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "duration": "30s",
+      "blocks_per_call": 1000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 1) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 1) 4101799)) 999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlockRange_1000_x1.json --duration 30s --duration-stop wait --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 1) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 1) 4101799)) 999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.02951979637146,
+      "report_file": "scaling--GetBlockRange_1000_x1.json",
+      "client_cpu_seconds": 32.360874,
+      "count": 4797,
+      "ok": 4797,
+      "status_codes": {
+        "OK": 4797
+      },
+      "errors": {},
+      "rps": 159.88520823594857,
+      "total_ns": 30002775447,
+      "latency_ns": {
+        "average": 6080031,
+        "fastest": 4450738,
+        "slowest": 188534018,
+        "p50": 4915595,
+        "p90": 8325750,
+        "p95": 10244400,
+        "p99": 15581001
+      },
+      "blocks_per_second": 159885.20823594858,
+      "resources": {
+        "server": {
+          "cpu_seconds": 3.367602,
+          "peak_anon_memory_bytes_sampled": 424980480,
+          "peak_cgroup_memory_bytes_sampled": 1282600960,
+          "read_bytes": 2400256,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlock x1",
+      "method": "GetBlock",
+      "concurrency": 1,
+      "duration": "30s",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlock --concurrency 1 --connections 1 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlock_x1.json --duration 30s --duration-stop wait --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.168676614761353,
+      "report_file": "scaling--GetBlock_x1.json",
+      "client_cpu_seconds": 29.041916999999984,
+      "count": 85327,
+      "ok": 85327,
+      "status_codes": {
+        "OK": 85327
+      },
+      "errors": {},
+      "rps": 2844.248742240511,
+      "total_ns": 29999837473,
+      "latency_ns": {
+        "average": 246124,
+        "fastest": 189814,
+        "slowest": 3451061,
+        "p50": 234718,
+        "p90": 269831,
+        "p95": 279692,
+        "p99": 444051
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 15.562247,
+          "peak_anon_memory_bytes_sampled": 424980480,
+          "peak_cgroup_memory_bytes_sampled": 1282568192,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlockRange/1000 x8",
+      "method": "GetBlockRange",
+      "concurrency": 8,
+      "duration": "30s",
+      "blocks_per_call": 1000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 8) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 8) 4101799)) 999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 8 --connections 8 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlockRange_1000_x8.json --duration 30s --duration-stop wait --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 8) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 8) 4101799)) 999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.04852843284607,
+      "report_file": "scaling--GetBlockRange_1000_x8.json",
+      "client_cpu_seconds": 59.96995300000002,
+      "count": 5983,
+      "ok": 5983,
+      "status_codes": {
+        "OK": 5983
+      },
+      "errors": {},
+      "rps": 199.26039566102796,
+      "total_ns": 30026036936,
+      "latency_ns": {
+        "average": 35737451,
+        "fastest": 7382384,
+        "slowest": 603397983,
+        "p50": 33301928,
+        "p90": 54440966,
+        "p95": 62925117,
+        "p99": 79780385
+      },
+      "blocks_per_second": 199260.39566102796,
+      "resources": {
+        "server": {
+          "cpu_seconds": 4.378253,
+          "peak_anon_memory_bytes_sampled": 424980480,
+          "peak_cgroup_memory_bytes_sampled": 1283969024,
+          "read_bytes": 229376,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlock x8",
+      "method": "GetBlock",
+      "concurrency": 8,
+      "duration": "30s",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlock --concurrency 8 --connections 8 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlock_x8.json --duration 30s --duration-stop wait --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.497849464416504,
+      "report_file": "scaling--GetBlock_x8.json",
+      "client_cpu_seconds": 58.695752,
+      "count": 264918,
+      "ok": 264918,
+      "status_codes": {
+        "OK": 264918
+      },
+      "errors": {},
+      "rps": 8831.02897282534,
+      "total_ns": 29998542731,
+      "latency_ns": {
+        "average": 632102,
+        "fastest": 157564,
+        "slowest": 6737964,
+        "p50": 532594,
+        "p90": 1048705,
+        "p95": 1431923,
+        "p99": 2270709
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 31.520263,
+          "peak_anon_memory_bytes_sampled": 425209856,
+          "peak_cgroup_memory_bytes_sampled": 1283289088,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlockRange/1000 x32",
+      "method": "GetBlockRange",
+      "concurrency": 32,
+      "duration": "30s",
+      "blocks_per_call": 1000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 32) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 32) 4101799)) 999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 32 --connections 32 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlockRange_1000_x32.json --duration 30s --duration-stop wait --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 32) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 32) 4101799)) 999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.160582542419434,
+      "report_file": "scaling--GetBlockRange_1000_x32.json",
+      "client_cpu_seconds": 60.264706000000004,
+      "count": 6074,
+      "ok": 6074,
+      "status_codes": {
+        "OK": 6074
+      },
+      "errors": {},
+      "rps": 201.61484605902317,
+      "total_ns": 30126749685,
+      "latency_ns": {
+        "average": 133605945,
+        "fastest": 9197508,
+        "slowest": 3577368265,
+        "p50": 120903484,
+        "p90": 198338868,
+        "p95": 234259168,
+        "p99": 394531687
+      },
+      "blocks_per_second": 201614.84605902317,
+      "resources": {
+        "server": {
+          "cpu_seconds": 4.880114,
+          "peak_anon_memory_bytes_sampled": 425218048,
+          "peak_cgroup_memory_bytes_sampled": 1284231168,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlock x32",
+      "method": "GetBlock",
+      "concurrency": 32,
+      "duration": "30s",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlock --concurrency 32 --connections 32 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlock_x32.json --duration 30s --duration-stop wait --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.59487771987915,
+      "report_file": "scaling--GetBlock_x32.json",
+      "client_cpu_seconds": 60.30545399999999,
+      "count": 287660,
+      "ok": 287660,
+      "status_codes": {
+        "OK": 287660
+      },
+      "errors": {},
+      "rps": 9590.712681855533,
+      "total_ns": 29993600011,
+      "latency_ns": {
+        "average": 2438053,
+        "fastest": 179648,
+        "slowest": 12429929,
+        "p50": 2075432,
+        "p90": 4484580,
+        "p95": 5556183,
+        "p99": 7287191
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 30.419685,
+          "peak_anon_memory_bytes_sampled": 425959424,
+          "peak_cgroup_memory_bytes_sampled": 1284857856,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlockRange/1000 x128",
+      "method": "GetBlockRange",
+      "concurrency": 128,
+      "duration": "30s",
+      "blocks_per_call": 1000,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 128) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 128) 4101799)) 999 }}\"}}",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 128 --connections 128 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlockRange_1000_x128.json --duration 30s --duration-stop wait --data '{\"start\":{\"height\":\"{{ (add 280000 (mod (add (mul .RequestNumber 2654435761) 128) 4101799)) }}\"},\"end\":{\"height\":\"{{ add (add 280000 (mod (add (mul .RequestNumber 2654435761) 128) 4101799)) 999 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.637287616729736,
+      "report_file": "scaling--GetBlockRange_1000_x128.json",
+      "client_cpu_seconds": 61.11998000000003,
+      "count": 6118,
+      "ok": 6118,
+      "status_codes": {
+        "OK": 6118
+      },
+      "errors": {},
+      "rps": 200.1451206993819,
+      "total_ns": 30567819883,
+      "latency_ns": {
+        "average": 567127536,
+        "fastest": 23095679,
+        "slowest": 13860885201,
+        "p50": 536462412,
+        "p90": 733031375,
+        "p95": 838787266,
+        "p99": 1206192129
+      },
+      "blocks_per_second": 200145.1206993819,
+      "resources": {
+        "server": {
+          "cpu_seconds": 4.614598,
+          "peak_anon_memory_bytes_sampled": 426065920,
+          "peak_cgroup_memory_bytes_sampled": 1289244672,
+          "read_bytes": 69632,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    },
+    {
+      "suite": "scaling",
+      "name": "GetBlock x128",
+      "method": "GetBlock",
+      "concurrency": 128,
+      "duration": "30s",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlock --concurrency 128 --connections 128 --timeout 120s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/scaling--GetBlock_x128.json --duration 30s --duration-stop wait --data-file runs/ztreamer-v0.1.0-r1-nodelay/serving/data-heights.json 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 30.584575653076172,
+      "report_file": "scaling--GetBlock_x128.json",
+      "client_cpu_seconds": 60.538283999999976,
+      "count": 283847,
+      "ok": 283847,
+      "status_codes": {
+        "OK": 283847
+      },
+      "errors": {},
+      "rps": 9473.200422751795,
+      "total_ns": 29963157891,
+      "latency_ns": {
+        "average": 9746474,
+        "fastest": 188404,
+        "slowest": 45837383,
+        "p50": 8186931,
+        "p90": 18006286,
+        "p95": 22039315,
+        "p99": 28978860
+      },
+      "resources": {
+        "server": {
+          "cpu_seconds": 30.216231,
+          "peak_anon_memory_bytes_sampled": 426450944,
+          "peak_cgroup_memory_bytes_sampled": 1286320128,
+          "read_bytes": 0,
+          "write_bytes": 0
+        }
+      },
+      "data_file": "data-heights.json"
+    },
+    {
+      "suite": "sync",
+      "name": "sync 280000-4382797",
+      "method": "GetBlockRange",
+      "concurrency": 1,
+      "total": 411,
+      "blocks_total": 4102798,
+      "data_template": "{\"start\":{\"height\":\"{{ (add 280000 (mul .RequestNumber 10000)) }}\"},\"end\":{\"height\":\"{{ min (add (add 280000 (mul .RequestNumber 10000)) 9999) 4382797 }}\"}}",
+      "timeout": "600s",
+      "command": "taskset -c 2-3 /opt/zbench/bin/ghz --insecure --proto /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol/service.proto --import-paths /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/proto/lightwallet-protocol --call cash.z.wallet.sdk.rpc.CompactTxStreamer.GetBlockRange --concurrency 1 --connections 1 --timeout 600s --max-recv-message-size 256MB --format json --output runs/ztreamer-v0.1.0-r1-nodelay/serving/sync--sync_280000-4382797.json --total 411 --data '{\"start\":{\"height\":\"{{ (add 280000 (mul .RequestNumber 10000)) }}\"},\"end\":{\"height\":\"{{ min (add (add 280000 (mul .RequestNumber 10000)) 9999) 4382797 }}\"}}' 127.0.0.1:9067",
+      "exit_code": 0,
+      "stderr": "",
+      "wall_seconds": 24.865750312805176,
+      "report_file": "sync--sync_280000-4382797.json",
+      "client_cpu_seconds": 29.196760000000026,
+      "count": 411,
+      "ok": 411,
+      "status_codes": {
+        "OK": 411
+      },
+      "errors": {},
+      "rps": 16.538546781329163,
+      "total_ns": 24851034703,
+      "latency_ns": {
+        "average": 60210562,
+        "fastest": 45666602,
+        "slowest": 780283146,
+        "p50": 49947531,
+        "p90": 76493140,
+        "p95": 89134122,
+        "p99": 145192928
+      },
+      "blocks_per_second": 165095.66096677308,
+      "resources": {
+        "server": {
+          "cpu_seconds": 2.752364,
+          "peak_anon_memory_bytes_sampled": 426549248,
+          "peak_cgroup_memory_bytes_sampled": 1285685248,
+          "read_bytes": 282624,
+          "write_bytes": 0
+        }
+      },
+      "data_file": null
+    }
+  ]
+}

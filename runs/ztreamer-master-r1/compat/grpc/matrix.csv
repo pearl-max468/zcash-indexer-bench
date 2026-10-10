@@ -1,0 +1,275 @@
+method,case,mode,agreement,diff,ztreamer-master_status,ztreamer-master_messages,ztreamer-master_oracle,ztreamer-master_note
+GetLightdInfo,info,report,n/a (tip-dependent),,OK,1,,
+GetLatestBlock,tip,equal,identical,,OK,1,,
+GetLatestTreeState,tip,equal,identical,,OK,1,,
+Ping,zero,report,n/a (tip-dependent),,UNIMPLEMENTED,0,,Ping is disabled; start ztreamerd with --ping-very-insecure to enable it
+GetBlock,height=279999,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=279999,equal,identical,,OK,1,,
+GetTreeState,height=279999,equal,identical,,OK,1,pass,sapling empty tree encoded '000000' (zebra: ''); orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=280000,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=280000,equal,identical,,OK,1,,
+GetTreeState,height=280000,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=280001,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=280001,equal,identical,,OK,1,,
+GetTreeState,height=280001,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=350494,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=350494,equal,identical,,OK,1,,
+GetTreeState,height=350494,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=583999,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=583999,equal,identical,,OK,1,,
+GetTreeState,height=583999,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=584000,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=584000,equal,identical,,OK,1,,
+GetTreeState,height=584000,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=584001,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=584001,equal,identical,,OK,1,,
+GetTreeState,height=584001,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=723451,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=723451,equal,identical,,OK,1,,
+GetTreeState,height=723451,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=843371,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=843371,equal,identical,,OK,1,,
+GetTreeState,height=843371,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=874772,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=874772,equal,identical,,OK,1,,
+GetTreeState,height=874772,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=896900,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=896900,equal,identical,,OK,1,,
+GetTreeState,height=896900,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=903799,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=903799,equal,identical,,OK,1,,
+GetTreeState,height=903799,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=903800,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=903800,equal,identical,,OK,1,,
+GetTreeState,height=903800,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=903801,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=903801,equal,identical,,OK,1,,
+GetTreeState,height=903801,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=984098,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=984098,equal,identical,,OK,1,,
+GetTreeState,height=984098,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1001845,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1001845,equal,identical,,OK,1,,
+GetTreeState,height=1001845,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1028499,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1028499,equal,identical,,OK,1,,
+GetTreeState,height=1028499,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1028500,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1028500,equal,identical,,OK,1,,
+GetTreeState,height=1028500,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1028501,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1028501,equal,identical,,OK,1,,
+GetTreeState,height=1028501,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1092515,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=1092515,equal,identical,,OK,1,,
+GetTreeState,height=1092515,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1430953,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1430953,equal,identical,,OK,1,,
+GetTreeState,height=1430953,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1509923,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1509923,equal,identical,,OK,1,,
+GetTreeState,height=1509923,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1570287,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1570287,equal,identical,,OK,1,,
+GetTreeState,height=1570287,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1589366,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1589366,equal,identical,,OK,1,,
+GetTreeState,height=1589366,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1617199,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1617199,equal,identical,,OK,1,,
+GetTreeState,height=1617199,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1650676,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1650676,equal,identical,,OK,1,,
+GetTreeState,height=1650676,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1668200,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1668200,equal,identical,,OK,1,,
+GetTreeState,height=1668200,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1686066,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1686066,equal,identical,,OK,1,,
+GetTreeState,height=1686066,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1769442,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1769442,equal,identical,,OK,1,,
+GetTreeState,height=1769442,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1842419,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1842419,equal,identical,,OK,1,,
+GetTreeState,height=1842419,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,height=1842420,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=1842420,equal,identical,,OK,1,,
+GetTreeState,height=1842420,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=1842421,equal,identical,,OK,1,pass,1 of 2 txs compact
+GetBlockNullifiers,height=1842421,equal,identical,,OK,1,,
+GetTreeState,height=1842421,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2108826,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2108826,equal,identical,,OK,1,,
+GetTreeState,height=2108826,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2200289,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2200289,equal,identical,,OK,1,,
+GetTreeState,height=2200289,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2208164,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2208164,equal,identical,,OK,1,,
+GetTreeState,height=2208164,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2223078,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2223078,equal,identical,,OK,1,,
+GetTreeState,height=2223078,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2389415,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2389415,equal,identical,,OK,1,,
+GetTreeState,height=2389415,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2901405,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2901405,equal,identical,,OK,1,,
+GetTreeState,height=2901405,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2906382,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2906382,equal,identical,,OK,1,,
+GetTreeState,height=2906382,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2975999,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2975999,equal,identical,,OK,1,,
+GetTreeState,height=2975999,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2976000,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2976000,equal,identical,,OK,1,,
+GetTreeState,height=2976000,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2976001,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2976001,equal,identical,,OK,1,,
+GetTreeState,height=2976001,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=2990864,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=2990864,equal,identical,,OK,1,,
+GetTreeState,height=2990864,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3001713,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3001713,equal,identical,,OK,1,,
+GetTreeState,height=3001713,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3135279,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3135279,equal,identical,,OK,1,,
+GetTreeState,height=3135279,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3256693,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3256693,equal,identical,,OK,1,,
+GetTreeState,height=3256693,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3317406,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=3317406,equal,identical,,OK,1,,
+GetTreeState,height=3317406,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3472373,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3472373,equal,identical,,OK,1,,
+GetTreeState,height=3472373,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3536499,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3536499,equal,identical,,OK,1,,
+GetTreeState,height=3536499,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3536500,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3536500,equal,identical,,OK,1,,
+GetTreeState,height=3536500,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3536501,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3536501,equal,identical,,OK,1,,
+GetTreeState,height=3536501,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3582373,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=3582373,equal,identical,,OK,1,,
+GetTreeState,height=3582373,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3738392,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3738392,equal,identical,,OK,1,,
+GetTreeState,height=3738392,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3803062,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3803062,equal,identical,,OK,1,,
+GetTreeState,height=3803062,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3845282,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3845282,equal,identical,,OK,1,,
+GetTreeState,height=3845282,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=3885879,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=3885879,equal,identical,,OK,1,,
+GetTreeState,height=3885879,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4051999,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4051999,equal,identical,,OK,1,,
+GetTreeState,height=4051999,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4052000,equal,identical,,OK,1,pass,2 of 3 txs compact
+GetBlockNullifiers,height=4052000,equal,identical,,OK,1,,
+GetTreeState,height=4052000,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4052001,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4052001,equal,identical,,OK,1,,
+GetTreeState,height=4052001,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4069643,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=4069643,equal,identical,,OK,1,,
+GetTreeState,height=4069643,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4114325,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=4114325,equal,identical,,OK,1,,
+GetTreeState,height=4114325,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4133999,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4133999,equal,identical,,OK,1,,
+GetTreeState,height=4133999,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4134000,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4134000,equal,identical,,OK,1,,
+GetTreeState,height=4134000,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4134001,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4134001,equal,identical,,OK,1,,
+GetTreeState,height=4134001,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4205892,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4205892,equal,identical,,OK,1,,
+GetTreeState,height=4205892,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4225517,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4225517,equal,identical,,OK,1,,
+GetTreeState,height=4225517,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4329097,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetBlockNullifiers,height=4329097,equal,identical,,OK,1,,
+GetTreeState,height=4329097,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,height=4382797,equal,identical,,OK,1,pass,1 of 1 txs compact
+GetBlockNullifiers,height=4382797,equal,identical,,OK,1,,
+GetTreeState,height=4382797,equal,identical,,OK,1,pass,matches z_gettreestate
+GetBlock,hash@350494,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetTreeState,hash@350494,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,hash@723451,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetTreeState,hash@723451,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,hash@843371,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetTreeState,hash@843371,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,hash@874772,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetTreeState,hash@874772,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,hash@896900,equal,identical,,OK,1,pass,0 of 1 txs compact
+GetTreeState,hash@896900,equal,identical,,OK,1,pass,orchard empty tree encoded '000000' (zebra: '')
+GetBlock,pre-sapling height=1,equal,identical,,OK,1,,
+GetBlock,beyond tip,equal,both OUT_OF_RANGE,,OUT_OF_RANGE,0,,compact block height 14382797 is outside indexed coverage
+GetBlockRange,350494-350593,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,350494-350593,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,350593-350494 descending,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,350494-350593 pools=transparent,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,350494-350593 pools=sapling,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,350494-350593 pools=orchard,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,350494-350593 pools=all,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,1001845-1001944,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,1001845-1001944,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,1617199-1617298,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,1617199-1617298,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,2200289-2200388,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,2200289-2200388,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,2990864-2990963,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,2990864-2990963,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,3582373-3582472,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRangeNullifiers,3582373-3582472,equal,identical,,OK,100,pass,100 blocks in order
+GetBlockRange,4282797-4382797 100k,equal,identical,,OK,100001,pass,100001 blocks in order
+GetTransaction,txid=55329968cb28,equal,identical,,OK,1,pass,matches getrawtransaction
+GetTransaction,txid=f3572cc3657e,equal,identical,,OK,1,pass,matches getrawtransaction
+GetTransaction,txid=e1588ef00f6d,equal,identical,,OK,1,pass,matches getrawtransaction
+GetTransaction,txid=8a592ee1bec7,equal,identical,,OK,1,pass,matches getrawtransaction
+GetTransaction,txid=4850cae5b2dc,equal,identical,,OK,1,pass,matches getrawtransaction
+SendTransaction,already-mined tx,equal,both INVALID_ARGUMENT,,INVALID_ARGUMENT,0,,"Zakura rejected transaction: transaction verification failed: failed to validate tx: transaction::Hash(""private""), error: transaction is already in state"
+SendTransaction,malformed bytes,equal,both INVALID_ARGUMENT,,INVALID_ARGUMENT,0,,invalid transaction: parse error: bad tx header
+GetTransaction,unknown txid,equal,both NOT_FOUND,,NOT_FOUND,0,,transaction not found
+GetTaddressTxids,moderate,equal,identical,,OK,207,pass,207 txs; 26/26 sampled raw txs present
+GetTaddressTransactions,moderate,equal,identical,,OK,207,pass,207 txs; 26/26 sampled raw txs present
+GetTaddressBalance,moderate,equal,identical,,OK,1,pass,valueZat 51750020650 vs zebra 51750020650
+GetTaddressBalanceStream,moderate,equal,identical,,OK,1,pass,valueZat 51750020650 vs zebra 51750020650
+GetAddressUtxos,moderate,equal,identical,,OK,1,pass,207 utxos match getaddressutxos
+GetAddressUtxosStream,moderate,equal,identical,,OK,207,pass,207 utxos match getaddressutxos
+GetTaddressTxids,active,equal,identical,,OK,35000,pass,35000 txs; 25/25 sampled raw txs present
+GetTaddressTransactions,active,equal,identical,,OK,35000,pass,35000 txs; 25/25 sampled raw txs present
+GetTaddressBalance,active,equal,identical,,OK,1,pass,valueZat 765625000000 vs zebra 765625000000
+GetTaddressBalanceStream,active,equal,identical,,OK,1,pass,valueZat 765625000000 vs zebra 765625000000
+GetAddressUtxos,active,equal,identical,,OK,1,pass,35000 utxos match getaddressutxos
+GetAddressUtxosStream,active,equal,identical,,OK,35000,pass,35000 utxos match getaddressutxos
+GetTaddressTxids,quiet,equal,identical,,OK,7,pass,7 txs; 7/7 sampled raw txs present
+GetTaddressTransactions,quiet,equal,identical,,OK,7,pass,7 txs; 7/7 sampled raw txs present
+GetTaddressBalance,quiet,equal,identical,,OK,1,pass,valueZat 1750000000 vs zebra 1750000000
+GetTaddressBalanceStream,quiet,equal,identical,,OK,1,pass,valueZat 1750000000 vs zebra 1750000000
+GetAddressUtxos,quiet,equal,identical,,OK,1,pass,7 utxos match getaddressutxos
+GetAddressUtxosStream,quiet,equal,identical,,OK,7,pass,7 utxos match getaddressutxos
+GetTaddressBalance,all fixtures,equal,identical,,OK,1,pass,valueZat 819125020650 vs zebra 819125020650
+GetTaddressBalanceStream,all fixtures + duplicate,equal,identical,,OK,1,pass,valueZat 819125020650 vs zebra 819125020650
+GetTaddressBalance,invalid address,equal,both INVALID_ARGUMENT,,INVALID_ARGUMENT,0,,invalid address: parse error: invalid Bech32 encoding
+GetMempoolTx,no exclusions,equal,identical,,OK,0,,
+GetMempoolStream,5s window,report,n/a (tip-dependent),,DEADLINE_EXCEEDED,0,,Deadline Exceeded
+GetSubtreeRoots,sapling all,equal,identical,,OK,6,pass,6 roots match z_getsubtreesbyindex
+GetSubtreeRoots,"sapling from 2, max 3",equal,identical,,OK,3,pass,3 roots match z_getsubtreesbyindex
+GetSubtreeRoots,orchard all,equal,identical,,OK,3,pass,3 roots match z_getsubtreesbyindex
+GetSubtreeRoots,"orchard from 2, max 3",equal,identical,,OK,1,pass,1 roots match z_getsubtreesbyindex
+GetSubtreeRoots,ironwood (not active on mainnet),equal,identical,,OK,5,,

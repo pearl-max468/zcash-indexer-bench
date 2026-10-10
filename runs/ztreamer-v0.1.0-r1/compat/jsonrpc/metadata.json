@@ -1,0 +1,106 @@
+{
+  "run_utc": "2026-10-09T02:20:38.632176+00:00",
+  "reference": {
+    "zebra": "http://127.0.0.1:8232"
+  },
+  "servers": {
+    "ztreamer-v0.1.0": "http://127.0.0.1:8242"
+  },
+  "height": 4382797,
+  "fixtures": {
+    "addresses": {
+      "moderate": "tmJk517HdhVV1i29uKGtNUUNTTBQT7CFEgs",
+      "active": "t29fBCFbhgsjL3XYEZ1yk1TUh7eTusB6dPg",
+      "quiet": "tmDWAnsTyPamHw6wRznrhsTGo1NFPF3ySAH"
+    },
+    "txids": [
+      "55329968cb2890b84e06475f754939fa742267af98bc732678d35e86adf9e50f",
+      "f3572cc3657ec2fc0b015b88e221d6838f55a4e96c5f794f3c68677455e6b3da",
+      "e1588ef00f6d2959f1fa268cc8d025b9b4f53850c20181d2b217ce97eeda9afa",
+      "8a592ee1bec7694300c2fa374e90f3009b5b109dd9bbd830a17bbf80afc263d3",
+      "4850cae5b2dc2e36c3ec60372c1014fc4fbee2fc2601b2c737689a5dbda772e7"
+    ],
+    "transactions": [
+      {
+        "txid": "55329968cb2890b84e06475f754939fa742267af98bc732678d35e86adf9e50f",
+        "height": 1589366,
+        "kind": "coinbase",
+        "version": 4
+      },
+      {
+        "txid": "f3572cc3657ec2fc0b015b88e221d6838f55a4e96c5f794f3c68677455e6b3da",
+        "height": 580579,
+        "kind": "transparent-only",
+        "version": 4
+      },
+      {
+        "txid": "e1588ef00f6d2959f1fa268cc8d025b9b4f53850c20181d2b217ce97eeda9afa",
+        "height": 538286,
+        "kind": "sapling-v4",
+        "version": 4
+      },
+      {
+        "txid": "8a592ee1bec7694300c2fa374e90f3009b5b109dd9bbd830a17bbf80afc263d3",
+        "height": 3692198,
+        "kind": "orchard",
+        "version": 5
+      },
+      {
+        "txid": "4850cae5b2dc2e36c3ec60372c1014fc4fbee2fc2601b2c737689a5dbda772e7",
+        "height": 1864497,
+        "kind": "orchard+sapling",
+        "version": 5
+      }
+    ],
+    "address_history_lengths": {
+      "tmJk517HdhVV1i29uKGtNUUNTTBQT7CFEgs": 207,
+      "t29fBCFbhgsjL3XYEZ1yk1TUh7eTusB6dPg": 35000,
+      "tmDWAnsTyPamHw6wRznrhsTGo1NFPF3ySAH": 7
+    },
+    "selection": {
+      "seed": 20261009,
+      "network": "Testnet",
+      "lower": 280000,
+      "upper": 4382797,
+      "blocks_visited": 600,
+      "missing_kinds": [
+        "sprout",
+        "sapling-v5"
+      ],
+      "ztreamer_published": {
+        "addresses": {},
+        "txids": []
+      }
+    }
+  },
+  "volatile_methods": [
+    "getaddressbalance",
+    "getaddressutxos",
+    "getbestblockhash",
+    "getblockchaininfo",
+    "getblockcount",
+    "getchaintips",
+    "getdifficulty",
+    "getinfo",
+    "getmempoolinfo",
+    "getmininginfo",
+    "getnetworksolps",
+    "getpeerinfo",
+    "getrawmempool",
+    "gettxoutsetinfo",
+    "sendrawtransaction"
+  ],
+  "argv": [
+    "bench/compat_jsonrpc.py",
+    "--server",
+    "ztreamer-v0.1.0=http://127.0.0.1:8242,cookie=/zbench/zakura-cookie/.cookie",
+    "--reference",
+    "zebra=http://127.0.0.1:8232,cookie=/zbench/zebra-cookie/.cookie",
+    "--fixtures",
+    "prepare/fixtures.json",
+    "--height",
+    "4382797",
+    "--out",
+    "runs/ztreamer-v0.1.0-r1/compat/jsonrpc"
+  ]
+}

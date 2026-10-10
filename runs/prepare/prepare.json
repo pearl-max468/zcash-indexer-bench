@@ -1,0 +1,7 @@
+{
+  "tip": 4382897,
+  "upper": 4382797,
+  "snapshot": "ZF_TESTNET_URL=https://snapshots.zfnd.org/testnet/20260923/zebrad-state-testnet-v28-20260923.tar.zst",
+  "zebra_state_bytes": "13235406540",
+  "data_volume_df": "/dev/root      154894188544 40902725632 113974685696  27% /"
+}

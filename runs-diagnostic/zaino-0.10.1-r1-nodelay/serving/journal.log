@@ -1,0 +1,5 @@
+1791663289.617380 runnervmmprz5 zainod-0.10.1[6330]: zbench nodelay shim: TCP_NODELAY set on accepted socket
+1791664283.075545 runnervmmprz5 systemd[1]: Stopping zbench-serve-zaino-0.10.1.service - /opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r1-nodelay/serving/zainod.toml...
+1791664283.722077 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.10.1.service: Deactivated successfully.
+1791664283.722426 runnervmmprz5 systemd[1]: Stopped zbench-serve-zaino-0.10.1.service - /opt/zbench/bin/zainod-0.10.1 start --config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/zaino-0.10.1-r1-nodelay/serving/zainod.toml.
+1791664283.722712 runnervmmprz5 systemd[1]: zbench-serve-zaino-0.10.1.service: Consumed 12min 58.566s CPU time, 8.1G memory peak, 0B memory swap peak, read 18.5G from disk, written 128.0K to disk.

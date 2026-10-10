@@ -1,0 +1,7 @@
+1791661542.358041 runnervmmprz5 ztreamerd-v0.1.0[4575]: 2026-10-10T19:45:42.358007Z  WARN zakurad::commands::start: configure an indexer_listen_addr to start the indexer RPC server
+1791661542.358400 runnervmmprz5 ztreamerd-v0.1.0[4575]: 2026-10-10T19:45:42.358241Z  WARN zakurad::components::sync::progress: chain tip metrics channel closed err=SendError { .. }
+1791661552.865268 runnervmmprz5 ztreamerd-v0.1.0[4575]: zbench nodelay shim: TCP_NODELAY set on accepted socket
+1791662016.782236 runnervmmprz5 systemd[1]: Stopping zbench-serve-ztreamer-v0.1.0.service - /opt/zbench/bin/ztreamerd-v0.1.0 --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-v0.1.0-r1-nodelay/serving/zakura.toml --index-dir /zbench/index/ztreamer-v0.1.0 --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999...
+1791662022.852611 runnervmmprz5 systemd[1]: zbench-serve-ztreamer-v0.1.0.service: Deactivated successfully.
+1791662022.852961 runnervmmprz5 systemd[1]: Stopped zbench-serve-ztreamer-v0.1.0.service - /opt/zbench/bin/ztreamerd-v0.1.0 --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-v0.1.0-r1-nodelay/serving/zakura.toml --index-dir /zbench/index/ztreamer-v0.1.0 --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999.
+1791662022.853264 runnervmmprz5 systemd[1]: zbench-serve-ztreamer-v0.1.0.service: Consumed 6min 23.872s CPU time, 1.0G memory peak, 0B memory swap peak, read 756.1M from disk, written 206.6M to disk.

@@ -1,0 +1,6 @@
+1791660997.297489 runnervmmprz5 ztreamerd-master[4055]: 2026-10-10T19:36:37.297436Z  WARN zakurad::commands::start: configure an indexer_listen_addr to start the indexer RPC server
+1791660997.297871 runnervmmprz5 ztreamerd-master[4055]: 2026-10-10T19:36:37.297596Z  WARN zakurad::components::sync::progress: chain tip metrics channel closed err=SendError { .. }
+1791661418.352143 runnervmmprz5 systemd[1]: Stopping zbench-serve-ztreamer-master.service - /opt/zbench/bin/ztreamerd-master --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-master-r2/serving/zakura.toml --index-dir /zbench/index/ztreamer-master --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999...
+1791661424.379505 runnervmmprz5 systemd[1]: zbench-serve-ztreamer-master.service: Deactivated successfully.
+1791661424.379688 runnervmmprz5 systemd[1]: Stopped zbench-serve-ztreamer-master.service - /opt/zbench/bin/ztreamerd-master --zakura-config /home/runner/work/zcash-indexer-bench/zcash-indexer-bench/runs/ztreamer-master-r2/serving/zakura.toml --index-dir /zbench/index/ztreamer-master --grpc-listen 127.0.0.1:9067 --metrics-listen 127.0.0.1:9999.
+1791661424.379947 runnervmmprz5 systemd[1]: zbench-serve-ztreamer-master.service: Consumed 4min 20.950s CPU time, 1.1G memory peak, 0B memory swap peak, read 932.0M from disk, written 207.0M to disk.
